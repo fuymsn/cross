@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<head>
+    <!--# include virtual="ssi/meta-cache.html" -->
+    <title>第一坊，华人视频直播第一站，海量美女才艺展示</title>
+
+    <script type="text/javascript" src="http://s.1room1.co/public/dist/v2015112401/ued.import.js?v=1.0"></script>
+    <script type="text/javascript">
+        app.importFile("commonCss", "css");
+        app.importFile("indexCss", "css");
+    </script>
+</head>
+<body id="index">
+    <!-- 页面头部 -->
+    <!--# include virtual="ssi/header.html" -->
+    <!-- 页面Banner -->
+<div class="inx-wrapper">
+    <div class="inx-section">
+    <!-- 页面主体 -->
+    <!--# include virtual="ssi/ad.html" -->
+    <!-- 页面主体 -->
+    <div class="container">
+        <div class="main-left">
+            <div class="main-item" id="inxResBox">
+                <div class="main-head">
+                    <h2 class="main-title">我的预约</h2>
+                    <a class="main-sub" href="/viewmore.html?tag=res">更多预约</a>
+                </div>
+                <div class="main-content clearfix" id="res"></div>
+            </div>
+
+            <div class="main-item" id="inxFavBox">
+                <div class="main-head">
+                    <h2 class="main-title">我的关注</h2>
+                    <a class="main-sub" href="/viewmore.html?tag=fav">更多直播</a>
+                </div>
+                <div class="main-content clearfix" id="fav"></div>
+            </div>
+
+            <div class="main-item" >
+                <div class="main-head">
+                    <h2 class="main-title">小编推荐</h2>
+                    <a class="main-sub" href="/viewmore.html?tag=rec">更多直播</a>
+                </div>
+                <div class="main-content clearfix" id="rec"></div>
+            </div>
+
+            <div class="main-item" >
+                <div class="main-head">
+                    <h2 class="main-title">才艺主播</h2>
+                    <a class="main-sub" href="/viewmore.html?tag=gen">更多直播</a>
+                </div>
+                <div class="main-content clearfix" id="gen"></div>
+            </div>
+
+            <div class="main-item" >
+                <div class="main-head">
+                    <h2 class="main-title">一对一房间</h2>
+                    <a class="main-sub" href="/viewmore.html?tag=ord">更多</a>
+                </div>
+                <div class="main-content clearfix" id="ord"></div>
+            </div>
+            
+            <div class="main-item" >
+                <div class="main-head">
+                    <h2 class="main-title">会员专区</h2>
+                    <a class="main-sub" href="/viewmore.html?tag=vip">更多直播</a>
+                </div>
+                <div class="main-content clearfix" id="vip"></div>
+            </div>
+        </div>
+
+        <div class="main-right">
+            <div class="side-search">
+                <input id="searchIpt" type="text" placeholder="主播昵称/主播ID" maxlength="16"/>
+                <a id="searchIptBtn" href="/search"></a>
+            </div>
+
+            <!--<dl class="side-online">-->
+                <!--<dt>目前在线玩家共有：</dt>-->
+                <!--<dd><span class="side-online-num"></span><span>位</span></dd>-->
+            <!--</dl>-->
+
+            <a href="" class="side-hot" target="_blank"></a>
+
+            <div class="side-rank J-tab">
+                <div class="rank-head">
+                    <h2 class="rank-title">赌圣排行榜</h2>
+                    <ul class="rank-tab J-tab-menu">
+                        <li class="active">日</li>
+                        <li>周</li>
+                        <li>月</li>
+                        <li class="bn">总</li>
+                    </ul>
+                </div>
+                <div class="rank-content J-tab-main active" id="rank_game_day"></div>
+                <div class="rank-content J-tab-main" id="rank_game_week"></div>
+                <div class="rank-content J-tab-main" id="rank_game_month"></div>
+                <div class="rank-content J-tab-main" id="rank_game_his"></div>
+            </div>
+
+            <div class="side-rank J-tab">
+                <div class="rank-head">
+                    <h2 class="rank-title">主播排行榜</h2>
+                    <ul class="rank-tab J-tab-menu">
+                        <li class="active">日</li>
+                        <li>周</li>
+                        <li>月</li>
+                        <li class="bn">总</li>
+                    </ul>
+                </div>
+
+                <div class="rank-content J-tab-main active" id="rank_exp_day"></div>
+                <div class="rank-content J-tab-main" id="rank_exp_week"></div>
+                <div class="rank-content J-tab-main" id="rank_exp_month"></div>
+                <div class="rank-content J-tab-main" id="rank_exp_his"></div>
+            </div>
+            <div class="side-rank J-tab">
+                <div class="rank-head">
+                    <h2 class="rank-title">富豪排行榜</h2>
+                    <ul class="rank-tab J-tab-menu">
+                        <li class="active">日</li>
+                        <li>周</li>
+                        <li>月</li>
+                        <li class="bn">总</li>
+                    </ul>
+                </div>
+                <div class="rank-content J-tab-main active" id="rank_rich_day">
+                    <!--<div class="rank-item">
+                        <div class="rank-num rank-num-1"></div>
+                        <div class="rank-text rank-text-bold">罗玉凤</div>
+                        <div class="rank-mark hotListImg AnchorLevel12"></div>
+                    </div> -->
+                </div>
+                <div class="rank-content J-tab-main" id="rank_rich_week"></div>
+                <div class="rank-content J-tab-main" id="rank_rich_month"></div>
+                <div class="rank-content J-tab-main" id="rank_rich_his"></div>
+            </div>
+
+            <!--右侧广告栏-->
+            <!--# include virtual="ssi/sidead.html" -->
+        </div>
+
+        <div class="float-box">
+            <a class="float-box-item float-box-up" href="javascript:scroll(0,0);" id="float-box-up">
+                <div>回到顶部</div>
+            </a>
+
+            <a class="float-box-item float-box-dl" href="" target="_blank" id="float-box-dl" title="客户端下载">
+                <div>客户端下载</div>
+            </a>
+        </div>
+
+    </div>
+    </div>
+</div>
+<div class="mail-check-wrap">
+    <div class="mail-check-dialog">
+        <div class="mail-check-close"></div>
+        <a href="/mailverific" target="_blank" class="mail-check-reg"></a>
+    </div>
+</div>
+
+<!-- 页面底部 -->
+<!--#include virtual="ssi/footer.html"-->
+<!-- 隐藏窗口 -->
+
+<script type="text/javascript">
+    window.IMG_PATH = "http://img.the1room.net";
+    window.PIC_PATH = "http://p1.1room1.co/public";
+    window.V_PATH = "http://" + location.hostname.replace(/www./,'v.');
+</script>
+
+<script type="text/javascript">
+    app.libImportJs();
+    app.importFile("commonJs", "js");
+    app.importFile("indexJs", "js");
+</script>
+
+<!--#include virtual="ssi/online-consultation.html"-->
+<!--#include virtual="ssi/google-analytics.html"-->
+
+</body>
+</html>

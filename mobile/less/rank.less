@@ -1,0 +1,137 @@
+.rank-tab{
+	height: 41px;
+
+	.rank-tab-btn{
+		float: left;
+		font-size: 14px;
+		width: 25%;
+		padding: 10px 0px;
+		cursor: pointer;
+		background-color: #fff;
+		text-align: center;
+		position: relative;
+
+		&.active{
+			.rank-tab-active{
+				width: 100%;
+				height: 4px;
+				background-color: #fb296b;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+		}
+	}
+}
+
+
+.rank-list{
+
+	.rank-top-row{
+		// margin-left: -10px;
+		// margin-right: -10px;
+		margin-top: 25px;
+
+		.col-xs-4{
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
+		.rank-top-porwrapper{
+			height: 100px;
+			position: relative;
+		}
+		.ranl-top-por1{
+			height: 100px;
+			width: 100px;
+		}
+		.ranl-top-por2{
+			height: 85px;
+			width: 85px;
+			margin-top: 15px;
+		}
+		.ranl-top-por3{
+			height: 70px;
+			width: 70px;
+			margin-top: 30px;
+		}
+
+		.rank-top-por{
+			display: block;
+			border-radius: 100px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 0px;
+			background-size: cover;
+			background-position: center;
+		}
+
+		.rank-top-title{
+			margin-top: 6px;
+			text-align: center;
+		}
+
+		.rank-top-diamond{
+			text-align: center;
+		}
+
+		.rank-top-num{
+			width: 37px;
+			height: 37px;
+			position: absolute;
+			left: 50%;
+    		margin-left: -19px;
+			background-image: url("../image/ranking.png");
+		}
+
+		.rank-top-num1{
+			top: -17px;
+			background-position: 0px 0px;
+		}
+		.rank-top-num2{
+			top: -3px;
+			background-position: -38px 0px;
+		}
+		.rank-top-num3{
+			top: 13px;
+			background-position: -76px 0px;
+		}
+	}
+
+
+
+	.rank-bottom-row{
+		margin: 15px 10px 0px 10px;
+		border-top: 1px solid #ccc;
+
+		.rank-bottom-item{
+			height: 50px;
+			padding: 10px 0px 10px 0px;
+			border-bottom: 1px solid #ccc;
+		}
+		.rank-item-num{
+			font-size: 24px;
+			line-height: 50px;
+			font-weight: bold;
+			float: left;
+			margin-right: 15px;
+		}
+		.rank-item-por{
+			display: block;
+		    height: 50px;
+		    width: 50px;
+		    background-size: cover;
+		    background-position: center;
+		    float: left;
+		    border-radius: 50px;
+		    margin-right: 15px;
+		}
+
+		.rank-item-title{
+			font-size: 14px;
+			margin-top: 5px;
+		}
+
+	}
+
+}

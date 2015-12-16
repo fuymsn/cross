@@ -1,0 +1,61 @@
+@import "../module/variable.less";
+
+.res-list{
+    margin-right: -15px;
+}
+.res-item{
+    background-color: #eee;
+    border: 1px solid #d0d0d0;
+    float: left;
+    width: 260px;
+    margin:0px 16px 16px 0px;
+
+    .res-item-inner{
+        padding: 10px;
+    }
+
+    .res-imgBlock{
+        width: 100px;
+        float: left;
+        margin-right: 10px;
+        position: relative;
+        .res-img{
+            width: 100px;
+            height: 100px;
+        }
+        .res-points{
+            margin: 6px 0px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+        .status{
+            width: 40px;
+            height: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            color: #fff;
+            line-height: 20px;
+            background-color: #999;
+            &.live{
+              background-color: @orange;
+            }
+        }
+    }
+
+    .res-contentBlock{
+        width: 130px;
+        float: left;
+
+        h4{
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .btn-reserve{
+            margin-top: 5px;
+        }
+    }
+}

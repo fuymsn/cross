@@ -1,0 +1,25 @@
+{
+  "name": "v-react",
+  "version": "1.0.0",
+  "description": "a react video project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Young",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.0.12",
+    "babel-core": "^5.8.33",
+    "babel-loader": "^5.3.3",
+    "css-loader": "^0.21.0",
+    "jquery": "^2.1.4",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.1",
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.2",
+    "zepto": "0.0.4"
+  }
+}

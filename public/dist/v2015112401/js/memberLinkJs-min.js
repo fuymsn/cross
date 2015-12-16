@@ -1,0 +1,1 @@
+$(function(){var a=new ZeroClipboard(document.getElementById("copyBtn"));a.on("ready",function(b){a.on("aftercopy",function(a){$.tips("复制成功")})})});

@@ -1,0 +1,35 @@
+body{
+	font-family: "SimHei", "黑体";
+}
+
+/* Clear Floats */
+.clearfix:before, .clearfix:after {
+	display: table;
+ 	content: " ";
+}
+.clearfix:after {
+	clear: both;
+}
+
+/* button */
+.btn{
+	border: 1px solid #fb296b;
+	border-radius: 5px;
+	padding: 8px 20px;
+	outline: none;
+}
+
+.btn-white{
+	background-color: #fff;
+	color: #fb296b;
+}
+
+.btn-red{
+	background-color: #fb296b;
+	color: #fff;
+}
+
+.btn-block{
+	width: 100%;
+	display: block;
+}

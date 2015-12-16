@@ -1,0 +1,43 @@
+.login-header{
+
+	position: relative;
+	margin: 20px 0px;
+
+	.login-title{
+		color: #333;
+		width: 140px;
+		background-color: #fff;
+		text-align: center;
+		margin: 0px auto;
+		position: relative;
+		z-index: 10
+	}
+
+	.login-line{
+		height: 1px;
+		background-color: #ccc;
+		position: relative;
+		top: -8px;
+	}
+
+}
+
+.login-item{
+
+	margin-top: 20px;
+	margin-bottom: 20px;
+
+	input[type='text'],
+	input[type='password']{
+		font-size: 14px;
+		width: 100%;
+		box-sizing: border-box;
+		border: none;
+		border-bottom: 1px solid #ccc;
+		outline: none;
+		&.active{
+			border-bottom: 1px solid #fb296b;
+		}
+	}
+
+}

@@ -1,0 +1,190 @@
+/**
+ * 个人空间
+ * @author Young
+ * @contacts young@kingjoy.co
+ */
+
+@import "../module/variable.less";
+
+.perSpace-top{
+	width: 100%;
+	height: 125px;
+	background: url(../i/space/personSpace-bg.jpg);
+	position: relative;
+	padding-top:60px;
+	.perSpace-top-per{
+		border-radius: 100px;
+		border:5px solid #fff;
+		overflow: hidden;
+		width: 180px;
+		height: 180px;
+		position: absolute;
+		z-index: 2;
+		top: 60px;
+		left: 20px;
+		img{
+			width: 180px;
+			height: 180px;
+			display: block;
+		}
+	}
+	.content{
+        margin: 0 0 0 240px;
+        width:530px;
+        float: left;
+        .name-block{
+            height: 70px;
+            overflow:hidden;
+            font-size: 30px;
+            span{
+            	display: inline-block;
+            	*display: inline;
+            	vertical-align: middle;
+            }
+            .name{
+                max-width: 390px;
+                line-height: 70px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .leverIco{
+                width: 84px;
+                height: 68px;
+                background: url(../i/space/person-spaceIco2.png);
+                margin-left: 20px;
+            }
+
+            .uid{
+        		font-size: 14px;
+        		margin-top: 5px;
+        	}
+        }
+
+		.discript{
+			height: 42px;
+			line-height: 42px;
+			.ico{
+				width: 28px;
+				height: 23px;
+				background: url(../i/space/person-spaceIco2.png) -84px -45px;
+				float: left;
+				margin: 8px 10px 0 0;
+			}
+		}
+	}
+	.redButton{
+		float: right;
+		width: 130px;
+		height: 40px;
+		border-radius: 0px;
+		margin: 50px 40px 0 0;
+	}
+}
+
+.perSpace-bottom{
+	border: 1px solid @boc;
+	border-top: none;
+	padding: 5px 0 20px 0;
+	table{
+		margin-left: 250px;
+		float: left;
+        th{
+        	text-align: right;
+        	vertical-align: middle;
+      	}
+      	td{
+	        text-align: left;
+	        padding: 10px 6px;
+	        vertical-align: middle;
+	        .level{
+	          	border:1px solid @red;
+	          	padding: 0px;
+
+	          	.text{
+		            display:block;
+		            position:absolute;
+		            line-height: 24px;
+		            text-indent: 1em;
+	          	}
+		        .highlight{
+		            display: block;
+		            width: 73%;
+		            height:24px;
+		            background: @red;
+	          	}
+	        }
+      	}
+	}
+	.tool{
+		padding: 10px 0;
+		float: right;
+		.tool-handle{
+			font-size: 16px;
+			line-height: 32px;
+			text-align: center;
+			border-left: 1px solid @boc;
+			float:left;
+			width: 100px;
+			.button{
+				color:@orange;
+				cursor: pointer;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+
+	}
+}
+
+.perSpace-photo{
+	margin-top: 20px;
+	.perSpace-photo-title{
+		font-size: 14px;
+		color: @red;
+		height: 60px;
+		line-height: 60px;
+		border:1px solid @boc;
+		padding: 0 10px;
+	}
+	.perSpace-photo-content{
+		border:1px solid @boc;
+		border-top:none;
+		padding: 0 10px 20px 10px;
+		.list-imgBox{
+			margin-top: 20px;
+			box-shadow: 3px 3px 3px #ccc;
+			.title{
+				padding: 0 10px;
+				color: #666;
+				line-height: 35px;
+				border: 1px solid @boc;
+			}
+		}
+	}
+}
+
+.per-main{
+	.menu-title{
+		height: 64px;
+		padding: 0 10px;
+		border:1px solid @boc;
+		border-top: 3px solid @orange;
+		line-height: 62px;
+		min-width: 120px;
+
+		span{
+			width: 33px;
+			height: 25px;
+			float: left;
+			display: block;
+			background: url(../i/space/person-spaceIco.jpg);
+			margin: 20px 10px 0px 10px;
+			&.she{
+				background-position: -33px 0px;
+			}
+		}
+	}
+}

@@ -1,0 +1,1 @@
+$(function(){var a=new Captcha;$("#btnAgree").on("click",function(){var b=$("#loginState").val();0==b?($(".login").trigger("click"),a.flashCaptcha($("#lsCode"))):location.href="/business/signup"})});

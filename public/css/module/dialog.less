@@ -1,0 +1,97 @@
+/*
+ * dialog less, this file is module for dialog
+ * Author: Young
+ * important module for the project, if u would like to modify the file, pls contact Young
+ * mail: young@kingjoy.co
+ */
+
+.btn-register{
+	width:200px !important;
+	margin: 0px auto;
+}
+
+/* dialog */
+.d-shadow{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.6;
+	z-index: 101;
+}
+
+.d-dialog{
+	position: fixed;
+	z-index: 102;
+	font-size: 14px;
+}
+
+.d-wrapper{
+	background: #fff;
+	min-width: 350px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	.d-close{
+		background-image: url(../i/common.png);
+		background-position: 0px -62px;
+		padding: 5px;
+		height: 18px;
+		width: 18px;
+		position: absolute;
+		right: 26px;
+		top: 12px;
+		cursor: pointer;
+		z-index: 20;
+	}
+}
+
+/* dialog main */
+.d-main{
+	
+	.d-title{
+		height: 44px;
+		line-height: 44px;
+		font-size: 20px;
+		padding: 2px 30px;
+		border-bottom: 1px solid #ccc;
+	}
+
+	.d-content{
+		padding: 30px 40px 30px 40px;
+
+		input{
+			// width: 400px;
+		}
+
+		textarea{
+			width: 400px;
+			height: 170px;
+		}
+
+		.tool{
+			margin-top: 10px;
+			.tool-num{
+				color: @red;
+				font-size: 18px;
+				margin: 0 5px;
+			}
+		    button{
+				width: 94px;
+				float: right;
+			}
+		}
+	}
+
+	.d-bottom{
+		padding: 0px 30px 30px 30px;
+		text-align: center;
+		.btn{
+			display: inline-block;
+			margin: 0px 10px;
+			min-width: 100px;
+			*display: inline;
+		}
+	}
+}

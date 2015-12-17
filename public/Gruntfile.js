@@ -13,9 +13,6 @@ module.exports = function(grunt) {
         ued_concat = {},
 
         ued_jsMinLinkArr = [],
-        ued_lessComplieObj = {},   //{ dist/.tmp/xxx.css : css/xxx.less }
-        ued_cssMinLinkArr = [],
-        ued_cssCombObj = {},
 
         //base path
         baseJsPath = "js/",
@@ -32,7 +29,31 @@ module.exports = function(grunt) {
 
     ued_concat[distPath + 'ued.import.js'] = ['ued.concat.js', 'ued.conf.js','import.js'];
     ued_jsMinLinkArr.push(distPath + 'ued.import.js');
-
+    
+    //console.log(ued_conf);
+    
+    //less 编译数组列表
+    var lessCompile = {};
+    var cssCompile = {};
+    
+    for (var i in ued_conf){
+        
+        if(i.indexOf(".js") > -1){ continue; }
+        
+        var arrCssItem = [];
+        var cssDistPath = distPath + "css/" + i.replace(".css", "-min.css");
+        
+        for(var j=0; j< ued_conf[i].length; j++){
+            arrCssItem[j] = baseCssPath + ued_conf[i][j];
+        }
+        
+        lessCompile[cssDistPath] = arrCssItem;
+        cssCompile[cssDistPath] = cssDistPath;
+    }
+    
+    //console.log(lessCompile);
+    //console.log(cssCompile);
+    
     for (var j in ued_conf) {
 
         //ued_conf key = ASource
@@ -72,16 +93,6 @@ module.exports = function(grunt) {
 
             ued_jsMinLinkArr.push(distPath + "js/" + j);
 
-        } else if (j.indexOf(".css") > -1) {
-            for (var m=0; m<ASource.length; m++) {
-                ASource[m] = baseCssPath + ASource[m];
-            }
-            for (var q=0; q<BSource.length; q++) {
-                BSource[q] = baseCssPath + BSource[q];
-            }
-
-            ued_cssCombObj[distPath + ".tmp/" + j] = [distPath + ".tmp/" + j];
-            ued_cssMinLinkArr.push(distPath + "css/" + j);
         }
 
         ued_conf[j] = BSource;
@@ -92,8 +103,6 @@ module.exports = function(grunt) {
     }
 
     //console.log(ued_conf);
-    //console.log(ued_cssCombObj);
-    //console.log(ued_cssMinLinkArr);
     //console.log(ued_concat);
     //生成ued.concat.js
     grunt.file.write('ued.concat.js', 'window.UED_publishTime = '+ new Date().getTime() +';\nwindow.UED_PUBLISH_VERSION = "'+ publishVersion + '";\nwindow.UED_SUB_PUBLISH_VERSION = "'+ subPublishVersion +'";\nwindow.UED_LIST ='+ JSON.stringify(ued_conf) +';');
@@ -127,20 +136,16 @@ module.exports = function(grunt) {
      *  压缩文件的映射关系
      */
     var ued_minjs = {};
-    var ued_mincss = {};
 
     var _minCount = 0;
-    var _minCssCount = 0;
 
     //console.log(ued_concat);
     //console.log("ued_jsMinLinkArr " + ued_jsMinLinkArr.length);
-    //console.log("ued_cssMinLinkArr " + ued_cssMinLinkArr);
 
     for (var i in ued_concat) {
 
         //console.log("i out" + i);
         //console.log("ued_jsMinLinkArr: " + ued_jsMinLinkArr);
-        //console.log("ued_cssMinLinkArr: " + ued_cssMinLinkArr);
 
         if ('ued.import.js' === i) {
             continue;
@@ -150,28 +155,21 @@ module.exports = function(grunt) {
             if (ued_jsMinLinkArr[_minCount] == undefined) {continue; };
             ued_minjs[ued_jsMinLinkArr[_minCount].replace(".js", "-min.js")] = [i];
             _minCount++;
-        } else if (i.indexOf(".less") > -1) {
-            ued_mincss[ued_cssMinLinkArr[_minCssCount].replace(".css", "-min.css")] = [i.replace(".less", ".css")];
-
-            ued_lessComplieObj[i.replace(".less", ".css")] = i;
-
-            _minCssCount++;
         }
     }
 
-    //console.log(ued_lessComplieObj);
     //console.log(ued_minjs);
-    //console.log(ued_mincss)  //dist/min <-- css/.tmp
 
     // 项目配置
     grunt.initConfig({
         //清除dist目录所有文件
+        pkg: grunt.file.readJSON('package.json'),
         clean: {
             dist: {
                 src: ['dist/']
             },
             cleantmp: {
-                src: ['dist/'+ publishVersion +'/.tmp', 'dist/'+ publishVersion +'/module', 'ued.concat.js']
+                src: ['dist/'+ publishVersion +'/.tmp', 'ued.concat.js']
             },
             cleanjs: {
                 src: ['dist/'+ publishVersion +'/.tmp']
@@ -185,24 +183,6 @@ module.exports = function(grunt) {
                 cwd: 'css/i',
                 src: '**',
                 dest: 'dist/' + publishVersion + '/i'
-            },
-            less: {
-                files: [{
-                    expand: true,
-                    cwd: 'css/module',
-                    src: '**',
-                    dest: 'dist/' + publishVersion + '/.tmp'
-                }, {
-                    expand: true,
-                    cwd: 'css/module',
-                    src: '**',
-                    dest: 'dist/' + publishVersion + '/.tmp/module'
-                }, {
-                    expand: true,
-                    cwd: 'css/module',
-                    src: '**',
-                    dest: 'dist/' + publishVersion + '/module'
-                }]
             }
         },
 
@@ -262,41 +242,34 @@ module.exports = function(grunt) {
         },
 
         less:{
-            complile:{
+            build:{
                 options: {
-                    strictMath: true,
-                    ieCompat: true
+                    banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+                    //压缩
+                    compress: true,
+                    //ie兼容
+                    ieCompat: true,
+                    
+                    //插件配置
+                    plugins: [
+                        //浏览器兼容性处理，css3浏览器修复，自动添加-webkit等前缀
+                        new (require('less-plugin-autoprefix'))({
+                            browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'ie 8', 'ie 9']
+                        })
+                        
+                    ]
                 },
-                files: ued_lessComplieObj
+                files: lessCompile
             }
         },
+        
         //梳理css
         csscomb: {
             dist: {
                 options: {
                     config: 'css/.csscomb.json'
                 },
-                files: ued_cssCombObj
-            }
-        },
-        // css3浏览器修复
-        autoprefixer: {
-            options: {
-                browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'ie 8', 'ie 9']
-            },
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: 'dist/' + publishVersion + '/.tmp',
-                    src: '*Css.css',
-                    dest: 'dist/' + publishVersion + '/.tmp'
-                }]
-            }
-        },
-        //压缩css
-        cssmin: {
-            compress: {
-                files: ued_mincss
+                files: cssCompile
             }
         },
 
@@ -323,13 +296,12 @@ module.exports = function(grunt) {
     // 默认任务
     grunt.registerTask('dist-clean', ['clean:dist']);
     grunt.registerTask('dist-copy', ['clean:dist', 'copy']);
-    grunt.registerTask('copy-img', ['clean:dist', 'copy:cssimg']);
-    grunt.registerTask('copy-less', ['clean:dist', 'copy:less']);
     grunt.registerTask('dist-cleantmp', ['clean:cleantmp']);
     grunt.registerTask('css-check', ['csslint']);
     grunt.registerTask('imgmin', ['imagemin']);
 
-    grunt.registerTask('dist-css', ['clean:dist', 'concat:default','copy:cssimg', 'copy:less', 'less', 'csscomb', 'autoprefixer', 'cssmin', "clean:cleantmp"]);
+    //grunt.registerTask('dist-css', ['clean:dist', 'concat:default','copy:cssimg', 'copy:less', 'less', 'csscomb', 'autoprefixer', 'cssmin', "clean:cleantmp"]);
+    grunt.registerTask('dist-css', ['clean:dist', 'copy:cssimg', 'less']);
     
     //grunt.registerTask('dist-js', ['concat:default', 'uglify']);
     grunt.registerTask('dist-js', ['clean:cleanjs', 'concat:default']);
@@ -338,10 +310,10 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['clean:cleantmp']);
 
     //dev
-    grunt.registerTask('dev', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'autoprefixer', 'cssmin', 'uglify', 'clean:cleantmp']);
+    grunt.registerTask('dev', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp']);
     
     //online
-    grunt.registerTask('default', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'autoprefixer', 'cssmin', 'uglify', 'clean:cleantmp', 'imagemin:dist']);
+    grunt.registerTask('default', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp', 'imagemin:dist']);
 
 
 };

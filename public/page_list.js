@@ -1,6 +1,7 @@
 // 页面模块
 module.exports = {
     'commonCss.css' : [
+        'module/reset.css',
         'module/common.less'
     ],
     'commonJs.js' : [

@@ -52,7 +52,7 @@ module.exports = function(grunt) {
     }
     
     //console.log(lessCompile);
-    //console.log(cssCompile);
+    console.log(cssCompile);
     
     for (var j in ued_conf) {
 
@@ -242,11 +242,11 @@ module.exports = function(grunt) {
         },
 
         less:{
-            build:{
+            dist:{
                 options: {
                     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
                     //压缩
-                    compress: true,
+                    compress: false,
                     //ie兼容
                     ieCompat: true,
                     
@@ -272,6 +272,16 @@ module.exports = function(grunt) {
                 files: cssCompile
             }
         },
+        
+        cssmin: {
+            dist: {
+                options: {
+                    
+                },
+                
+                files: cssCompile
+            }
+        },
 
         //image min
         imagemin: {
@@ -291,7 +301,7 @@ module.exports = function(grunt) {
     });
 
     // 加载所有依赖插件
-    require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
+    require('load-grunt-tasks')(grunt, { scope: ['dependencies', 'devDependencies'] });
 
     // 默认任务
     grunt.registerTask('dist-clean', ['clean:dist']);
@@ -299,10 +309,12 @@ module.exports = function(grunt) {
     grunt.registerTask('dist-cleantmp', ['clean:cleantmp']);
     grunt.registerTask('css-check', ['csslint']);
     grunt.registerTask('imgmin', ['imagemin']);
-
-    //grunt.registerTask('dist-css', ['clean:dist', 'concat:default','copy:cssimg', 'copy:less', 'less', 'csscomb', 'autoprefixer', 'cssmin', "clean:cleantmp"]);
-    grunt.registerTask('dist-css', ['clean:dist', 'copy:cssimg', 'less']);
     
+    //生成css
+    //grunt.registerTask('dist-css', ['clean:dist', 'concat:default','copy:cssimg', 'copy:less', 'less', 'csscomb', 'autoprefixer', 'cssmin', "clean:cleantmp"]);
+    grunt.registerTask('dist-css', ['clean:dist', 'copy:cssimg', 'less', 'csscomb', 'cssmin']);
+    
+    //生成image
     //grunt.registerTask('dist-js', ['concat:default', 'uglify']);
     grunt.registerTask('dist-js', ['clean:cleanjs', 'concat:default']);
     
@@ -313,7 +325,7 @@ module.exports = function(grunt) {
     grunt.registerTask('dev', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp']);
     
     //online
-    grunt.registerTask('default', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp', 'imagemin:dist']);
+    grunt.registerTask('default', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp', 'imagemin']);
 
 
 };

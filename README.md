@@ -6,4 +6,5 @@ A Front-End Framework can be used to common website & mobile
 * todo: css image and <img> should combine, in order to manage images as single and unified.
 
 # Release History
-* 2015-09-22 v0.1.0 optimize the process of less compilation
+* 2015-12-17 v0.1.0 optimize the process of less compilation
+* 2015-12-18 v0.1.1 update grunt with csscomb

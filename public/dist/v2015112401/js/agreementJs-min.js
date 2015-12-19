@@ -1,1 +1,1 @@
-/*! v - v0.0.1 - 2015-12-19 */$(function(){var a=new Captcha;$("#btnAgree").on("click",function(){var b=$("#loginState").val();0==b?($(".login").trigger("click"),a.flashCaptcha($("#lsCode"))):location.href="/business/signup"})});
+/*! cross-framework - v0.1.2 - 2015-12-19 */$(function(){var a=new Captcha;$("#btnAgree").on("click",function(){var b=$("#loginState").val();0==b?($(".login").trigger("click"),a.flashCaptcha($("#lsCode"))):location.href="/business/signup"})});

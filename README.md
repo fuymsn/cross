@@ -9,3 +9,4 @@ A Front-End Framework can be used to common website & mobile
 * 2015-12-17 v0.1.0 optimize the process of less compilation
 * 2015-12-18 v0.1.1 update grunt with csscomb
 * 2015-12-19 v0.1.2 update grunt js's process of concat & uglify
+* 2015-12-19 v0.1.3 put a unified config into package.json

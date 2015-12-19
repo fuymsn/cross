@@ -1,11 +1,15 @@
 ﻿/*global module:false*/
 module.exports = function(grunt) {
-
-    //code version & publish version
-    var version = "v1.0.4";
-    var publishVersion = "v2015112401";
-    var subPublishVersion = "1.0";
-
+    
+    //package config
+    var pkg = grunt.file.readJSON('package.json');
+    
+    //public version
+    var publishVersion = pkg.publishVersion;
+    
+    //subject public version
+    var subPublishVersion = pkg.subPublishVersion;
+    
     /**
      *  合并文件的映射关系
      */
@@ -52,7 +56,7 @@ module.exports = function(grunt) {
     var jsMinify = {};
     
     var jsImportConcat = {};
-    jsImportConcat[importDistPath] = ['ued.concat.js', 'ued.conf.js','import.js'];
+    jsImportConcat[importDistPath] = ['ued.concat.js', 'ued.conf.js', 'import.js'];
     
     var jsImportMinify = {};
     jsImportMinify[importMinDistPath] = importDistPath;
@@ -84,7 +88,7 @@ module.exports = function(grunt) {
     //console.log(jsMinify);
 
     //生成ued.concat.js
-    grunt.file.write('ued.concat.js', 'window.UED_publishTime = '+ new Date().getTime() +';\nwindow.UED_PUBLISH_VERSION = "'+ publishVersion + '";\nwindow.UED_SUB_PUBLISH_VERSION = "'+ subPublishVersion +'";\nwindow.UED_LIST ='+ JSON.stringify(ued_conf) +';');
+    grunt.file.write('ued.concat.js', 'window.UED_PUBLISH_VERSION = "'+ publishVersion + '";\nwindow.UED_SUB_PUBLISH_VERSION = "'+ subPublishVersion +'";\nwindow.UED_LIST ='+ JSON.stringify(ued_conf) +';');
 
     //replace HTML files task
     grunt.log.writeln("Running 'replace HTML files' task");
@@ -114,7 +118,7 @@ module.exports = function(grunt) {
     // 项目配置
     grunt.initConfig({
         //清除dist目录所有文件
-        pkg: grunt.file.readJSON('package.json'),
+        pkg: pkg,
         clean: {
             dist: {
                 src: ['dist/']
@@ -122,17 +126,20 @@ module.exports = function(grunt) {
             cleantmp: {
                 src: ['ued.concat.js']
             },
-            cleanjs: {
+            js: {
                 src: ['dist/'+ publishVersion +'/js']
             },
-            cleancss: {
+            css: {
                 src: ['dist/'+ publishVersion +'/css']
+            },
+            img: {
+                src: ['dist/'+ publishVersion + '/i']
             }
         },
 
         //将css背景图片资源复制到dist中
         copy: {
-            cssimg: {
+            img: {
                 expand: true,
                 cwd: 'css/i',
                 src: '**',
@@ -185,10 +192,12 @@ module.exports = function(grunt) {
                 }
             },
             
+            //import文件压缩
             import: {
                 files: jsImportMinify
             },
             
+            //页面文件压缩
             dist: {
                 files: jsConcat
             }
@@ -247,7 +256,7 @@ module.exports = function(grunt) {
         imagemin: {
             dist: {
                 options: {
-                    optimizationLevel: 3 //定义 PNG 图片优化水平
+                    optimizationLevel: 3 //定义图片优化水平
                 },
                 files: [{
                     expand: true, 
@@ -267,8 +276,7 @@ module.exports = function(grunt) {
     
     grunt.registerTask('dist-copy', ['clean:dist', 'copy']);
     grunt.registerTask('dist-cleantmp', ['clean:cleantmp']);
-    grunt.registerTask('css-check', ['csslint']);
-    grunt.registerTask('imgmin', ['imagemin']);
+    grunt.registerTask('css-lint', ['csslint']);
     
     //清除dist目录
     grunt.registerTask('dist-clean', ['clean:dist']);
@@ -276,20 +284,23 @@ module.exports = function(grunt) {
     
     //生成css
     //grunt.registerTask('dist-css', ['clean:dist', 'concat:default','copy:cssimg', 'copy:less', 'less', 'csscomb', 'autoprefixer', 'cssmin', "clean:cleantmp"]);
-    grunt.registerTask('dist-css', ['clean:cleancss', 'less', 'csscomb', 'cssmin']);
+    grunt.registerTask('dist-css', ['clean:css', 'less', 'csscomb', 'cssmin']);
     
     //生成js
     //grunt.registerTask('dist-js', ['concat:default', 'uglify']);
-    grunt.registerTask('dist-js', ['clean:cleanjs', 'concat:import', 'uglify']);
+    grunt.registerTask('dist-js', ['clean:js', 'concat:import', 'uglify']);
+    
+    //压缩图片
+    grunt.registerTask('dist-img', ['clean:img', 'copy:img', 'imagemin']);
     
     //test
     grunt.registerTask('test', ['clean:cleantmp']);
 
     //dev
-    grunt.registerTask('dev', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp']);
+    //grunt.registerTask('dev', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp']);
     
     //online
-    grunt.registerTask('default', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp', 'imagemin']);
+    grunt.registerTask('default', ['clean:dist', 'dist-css', 'dist-js', 'dist-img']);
 
 
 };

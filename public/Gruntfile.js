@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     /**
      *  合并文件的映射关系
      */
-    var ued_conf = require("./page_list.js"),
+    var pageList = require("./cross.list.js"),
 
         //base path
         baseJsPath = "js/",
@@ -34,15 +34,15 @@ module.exports = function(grunt) {
     var lessCompile = {};
     var cssCompile = {};
     
-    for (var i in ued_conf){
+    for (var i in pageList){
         
         if(i.indexOf(".js") > -1){ continue; }
         
         var arrCssItem = [];
         var cssDistPath = distPath + "css/" + i.replace(".css", "-min.css");
         
-        for(var j=0; j< ued_conf[i].length; j++){
-            arrCssItem[j] = baseCssPath + ued_conf[i][j];
+        for(var j=0; j< pageList[i].length; j++){
+            arrCssItem[j] = baseCssPath + pageList[i][j];
         }
         
         lessCompile[cssDistPath] = arrCssItem;
@@ -56,12 +56,12 @@ module.exports = function(grunt) {
     var jsMinify = {};
     
     var jsImportConcat = {};
-    jsImportConcat[importDistPath] = ['ued.concat.js', 'ued.conf.js', 'import.js'];
+    jsImportConcat[importDistPath] = ['.cross.concat.js', 'cross.conf.js', 'cross.import.js'];
     
     var jsImportMinify = {};
     jsImportMinify[importMinDistPath] = importDistPath;
     
-    for(var i in ued_conf){
+    for(var i in pageList){
         //如果是css，返回
         if(i.indexOf(".css") > -1){ continue; }
         
@@ -69,12 +69,12 @@ module.exports = function(grunt) {
         var arrJsItem = [];
         var jsDistPath = distPath + "js/" + i.replace(".js", "-min.js");
         
-        for(var j = 0; j < ued_conf[i].length; j++){
+        for(var j = 0; j < pageList[i].length; j++){
             
-            if(isServiceFile(ued_conf[i][j])){
-                arrJsItem[j] = serviceJsPath + ued_conf[i][j];
+            if(isServiceFile(pageList[i][j])){
+                arrJsItem[j] = serviceJsPath + pageList[i][j];
             }else{
-                arrJsItem[j] = baseJsPath + ued_conf[i][j];
+                arrJsItem[j] = baseJsPath + pageList[i][j];
             }
             
         }
@@ -87,8 +87,8 @@ module.exports = function(grunt) {
     //console.log(jsConcat);
     //console.log(jsMinify);
 
-    //生成ued.concat.js
-    grunt.file.write('ued.concat.js', 'window.UED_PUBLISH_VERSION = "'+ publishVersion + '";\nwindow.UED_SUB_PUBLISH_VERSION = "'+ subPublishVersion +'";\nwindow.UED_LIST ='+ JSON.stringify(ued_conf) +';');
+    //生成cross.concat.js
+    grunt.file.write('.cross.concat.js', 'window.UED_PUBLISH_VERSION = "'+ publishVersion + '";\nwindow.UED_SUB_PUBLISH_VERSION = "'+ subPublishVersion +'";\nwindow.UED_LIST = '+ JSON.stringify(pageList) +';');
 
     //replace HTML files task
     grunt.log.writeln("Running 'replace HTML files' task");
@@ -123,8 +123,8 @@ module.exports = function(grunt) {
             dist: {
                 src: ['dist/']
             },
-            cleantmp: {
-                src: ['ued.concat.js']
+            tmp: {
+                src: ['.cross.concat.js']
             },
             js: {
                 src: ['dist/'+ publishVersion +'/js']
@@ -275,7 +275,7 @@ module.exports = function(grunt) {
     // 默认任务
     
     grunt.registerTask('dist-copy', ['clean:dist', 'copy']);
-    grunt.registerTask('dist-cleantmp', ['clean:cleantmp']);
+    
     grunt.registerTask('css-lint', ['csslint']);
     
     //清除dist目录
@@ -293,14 +293,14 @@ module.exports = function(grunt) {
     //压缩图片
     grunt.registerTask('dist-img', ['clean:img', 'copy:img', 'imagemin']);
     
-    //test
-    grunt.registerTask('test', ['clean:cleantmp']);
+    //清除残留文件
+    grunt.registerTask('dist-cleantmp', ['clean:tmp']);
 
     //dev
     //grunt.registerTask('dev', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp']);
     
     //online
-    grunt.registerTask('default', ['clean:dist', 'dist-css', 'dist-js', 'dist-img']);
+    grunt.registerTask('default', ['clean:dist', 'dist-css', 'dist-js', 'dist-img', 'dist-cleantmp']);
 
 
 };

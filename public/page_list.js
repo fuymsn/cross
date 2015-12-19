@@ -121,8 +121,8 @@ module.exports = {
         'page/page-business.less'
     ],
 
-    'pageCommonJs.js': [
-    ],
+    // 'pageCommonJs.js': [
+    // ],
 
     //个人空间
     'spaceCss.css': [

@@ -1,0 +1,85 @@
+/**
+ * 消息页面
+ * @author Young
+ * @contacts young@kingjoy.co
+ */
+/*
+ * variable less file, this file is module for button
+ * Author: Young
+ * important module for the project, if u would like to modify the file, pls contact Young
+ * mail: young@kingjoy.co
+ */
+.messageList {
+  line-height: 36px;
+}
+.messageList dt {
+  border-bottom: 1px dashed #d6d6d6;
+}
+.messageList dt .list-open {
+  cursor: pointer;
+}
+.messageList dt input {
+  float: left;
+  margin: 11px 5px 0 0;
+}
+.messageList dt div {
+  float: left;
+  width: 16px;
+  height: 15px;
+  background: url(../i/star.jpg) -16px 0;
+  margin: 10px 5px 0 0;
+}
+.messageList dt div.active {
+  background-position: 0px 0px;
+}
+.messageList dt span {
+  float: left;
+}
+.messageList dt span.list-name {
+  margin-right: 10px;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.messageList dt span.list-content {
+  color: #666;
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.8em;
+  margin: 8px 0px 8px 0px;
+  word-break: break-word;
+}
+.messageList dt span.list-time {
+  float: right;
+  margin-right: 20px;
+}
+.messageList dt span.list-tool-reply {
+  color: #ff2700;
+}
+.messageList dt span.list-tool-delete {
+  color: #666;
+}
+.messageList dt span.star {
+  cursor: pointer;
+}
+.messageList dt p.list-tool {
+  float: right;
+  margin: 7px 20px 0 0;
+}
+.messageList dt p.list-tool span {
+  margin: 0 5px;
+  cursor: pointer;
+}
+.messageList dt p.list-tool span:hover {
+  text-decoration: underline;
+}
+.messageList dd {
+  text-indent: 2em;
+  color: #666;
+  padding: 0 10px;
+}
+#sysMsg .list-content {
+  width: 580px;
+}

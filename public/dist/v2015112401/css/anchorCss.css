@@ -1,0 +1,171 @@
+/*
+Uploadify
+Copyright (c) 2012 Reactive Apps, Ronnie Garcia
+Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
+*/
+.uploadify {
+  position: relative;
+  margin-bottom: 1em;
+}
+.uploadify-button {
+  background-color: #e50080;
+  background-image: -webkit-linear-gradient(bottom, #ce0068 0%, #ff0099 100%);
+  background-image: linear-gradient(to top, #ce0068 0%, #ff0099 100%);
+  background-image: -webkit-linear-gradient(to top, #ce0068 0%, #ff0099 100%);
+  background-image: -ms-linear-gradient(to top, #ce0068 0%, #ff0099 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ce0068), color-stop(1, #ff0099));
+  font-size: 16px;
+  padding: 6px 20px;
+  border-radius: 50px;
+  color: #fff;
+  box-shadow: 0px 2px 3px rgba(255, 255, 255, 0.5);
+  text-decoration: none !important;
+  line-height: 1.5em;
+  text-align: center;
+  display: block;
+}
+.uploadify .swfupload {
+  width: 138px;
+  height: 38px;
+}
+.uploadify:hover .uploadify-button {
+  /*	background-color: #606060;
+	background-image: linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -o-linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -moz-linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -webkit-linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -ms-linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, #606060),
+		color-stop(1, #808080)
+	);
+	background-position: center bottom;*/
+}
+.uploadify-button.disabled {
+  background-color: #D0D0D0;
+  color: #808080;
+}
+.uploadify-queue {
+  margin-top: 20px;
+  margin-bottom: 1em;
+}
+.uploadify-queue-item {
+  background-color: #F5F5F5;
+  border-radius: 3px;
+  font: 11px Verdana, Geneva, sans-serif;
+  margin-top: 5px;
+  max-width: 350px;
+  padding: 10px;
+}
+.uploadify-error {
+  background-color: #FDE5DD !important;
+}
+.uploadify-queue-item .cancel a {
+  background: url('../i/uploadify-cancel.png') 0 0 no-repeat;
+  float: right;
+  height: 16px;
+  text-indent: -9999px;
+  width: 16px;
+}
+.uploadify-queue-item.completed {
+  background-color: #E5E5E5;
+}
+.uploadify-progress {
+  background-color: #E5E5E5;
+  margin-top: 10px;
+  width: 100%;
+}
+.uploadify-progress-bar {
+  background-color: #0099FF;
+  height: 3px;
+  width: 1px;
+}
+
+/**
+ * 主播中心页面
+ * @author Young
+ * @contacts young@kingjoy.co
+ */
+/*
+ * variable less file, this file is module for button
+ * Author: Young
+ * important module for the project, if u would like to modify the file, pls contact Young
+ * mail: young@kingjoy.co
+ */
+.hostDetails {
+  margin-bottom: 20px;
+}
+.hostDetails img {
+  display: block;
+  margin-right: 20px;
+  float: left;
+}
+.hostDetails .upload-box {
+  float: left;
+}
+.hostDetails .upload-box .uploadify {
+  display: block;
+}
+.picGrp {
+  margin: 10px 40px 25px 0;
+  padding: 10px;
+  border: 1px solid #d6d6d6;
+  box-shadow: 3px 3px 3px #ccc;
+  float: left;
+}
+.picGrp dd {
+  margin-top: 10px;
+}
+.picGrp dd .toolDate {
+  float: left;
+}
+.toolGrp {
+  width: 100px;
+  float: right;
+  line-height: 13px;
+}
+.toolGrp span {
+  float: left;
+  width: 13px;
+  height: 13px;
+  background: url(../i/editPic.jpg);
+}
+.toolGrp a {
+  float: left;
+  margin-left: 10px;
+}
+.toolGrp a:hover {
+  color: #ff2700;
+}
+.toolGrp a:hover .edtIco {
+  background-position: -26px 0;
+}
+.toolGrp a:hover .delIco {
+  background-position: 0px 0;
+}
+.toolGrp .edtIco {
+  background-position: -39px 0;
+}
+.toolGrp .delIco {
+  background-position: -13px 0;
+}
+.live-count {
+  padding: 20px 0px;
+  font-size: 14px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.live-count .lc-title {
+  color: #ff2700;
+  font-size: 16px;
+}
+.live-count .lc-sub-title {
+  color: #666;
+}
+.live-count .lc-sub-content {
+  color: #e50080;
+  margin-right: 30px;
+}

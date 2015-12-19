@@ -1,0 +1,214 @@
+/*
+ * noble
+ * Author: Young
+ * mail: young@kingjoy.co
+ */
+.noble-d-prop {
+  width: 430px;
+}
+.noble-d-prop .noble-d-prop_left {
+  display: inline-block;
+  width: 200px;
+  margin-right: 30px;
+  vertical-align: top;
+}
+.noble-d-prop .noble-d-prop_right {
+  display: inline-block;
+  width: 200px;
+  vertical-align: top;
+}
+.noble-d-prop .noble-d-prop_right h2 {
+  text-align: center;
+  font-size: 18px;
+  margin: 5px 0px 20px 0px;
+}
+.noble-d-prop .noble-d-prop_right p {
+  margin: 15px 0px 0px 0px;
+  font-size: 12px;
+}
+.noble-d-charge {
+  width: 450px;
+  position: relative;
+}
+.noble-d-charge .noble-d-charge_head h2 {
+  font-size: 18px;
+  color: #333;
+  margin: 0px 0px 15px 0px;
+}
+.noble-d-charge .noble-d-charge_head img {
+  width: 100%;
+}
+.noble-d-charge .noble-d_main {
+  min-height: 270px;
+}
+.noble-d-charge .noble-d-charge_content {
+  color: #333;
+}
+.noble-d-charge .noble-d-charge_content h3 {
+  margin: 10px 0 10px 0;
+}
+.noble-d-charge .noble-d-charge_content p {
+  font-size: 14px;
+  line-height: 20px;
+}
+.noble-d-charge .noble-d-charge_content table {
+  width: 100%;
+  margin: 10px 0px;
+}
+.noble-d-charge .noble-d-charge_content table td {
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+}
+.noble-d-charge .noble-d-charge_btnbox {
+  margin: 20px 0px;
+}
+.noble-d-charge .noble-d-charge_btnbox .noble-d_charge_btn {
+  margin: 0px auto;
+}
+.noble-d-charge .noble-d-charge_btnbox .noble-d-link {
+  color: #666;
+  position: absolute;
+  bottom: 12px;
+  text-decoration: underline;
+  font-size: 12px;
+  right: 0px;
+}
+.noble-d-charge .noble-d_menu {
+  margin-bottom: 20px;
+  border-bottom: 3px solid #d03d75;
+}
+.noble-d-charge .noble-d_tab {
+  cursor: pointer;
+  float: left;
+  padding: 10px 8px 3px 7px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.noble-d-charge .noble-d_tab.active {
+  background-color: #d03d75;
+}
+.noble-table-diamond {
+  background-image: url(../i/header.png);
+  background-position: -168px 0px;
+  width: 15px;
+  height: 12px;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+/**
+ * 商城页面
+ * @author Young
+ * @contacts young@kingjoy.co
+ */
+/*
+ * variable less file, this file is module for button
+ * Author: Young
+ * important module for the project, if u would like to modify the file, pls contact Young
+ * mail: young@kingjoy.co
+ */
+/* 商城页面 */
+.shop-title {
+  border-bottom: 2px solid #d6d6d6;
+}
+.shop-content-btnTool {
+  float: right;
+  position: relative;
+  z-index: 1;
+}
+.shop-content-btnTool .btn {
+  display: block;
+  float: right;
+  margin-left: 10px;
+}
+.shop-item {
+  width: 137px;
+  margin: 10px 14px;
+  float: left;
+}
+.shop-item li {
+  font-size: 14px;
+  text-align: center;
+  line-height: 24px;
+  position: relative;
+}
+.shop-item li img {
+  vertical-align: middle;
+  margin: 0 5px;
+}
+.shop-item li .payNew {
+  background-image: url(../i/new.gif);
+  width: 23px;
+  height: 12px;
+  position: absolute;
+  right: 20px;
+  top: 0px;
+}
+.shop-item button {
+  margin: 5px auto 0px auto;
+}
+.payleft {
+  width: 167px;
+  float: left;
+}
+.payleft .payInfo {
+  border-bottom: 1px solid #d6d6d6;
+  padding-bottom: 5px;
+  float: none;
+}
+.payleft .payTips {
+  list-style-type: disc;
+}
+.payleft .payTips li {
+  color: #999;
+  margin: 8px 10px;
+  /* text-indent: 1em; */
+  line-height: 1.3em;
+}
+.payright {
+  width: 416px;
+  float: left;
+  margin-left: 30px;
+  background: #eee;
+  border-radius: 5px;
+  padding-bottom: 30px;
+}
+.payright table {
+  margin: 10px 0px 0px 10px;
+}
+.payright table td .fred {
+  color: #ff0000;
+}
+.payright table td .discount {
+  position: absolute;
+  left: 170px;
+}
+.payright table td .btn {
+  display: inline-block;
+  margin-right: 15px;
+}
+.payright table td input {
+  margin-right: 5px;
+  width: 100px !important;
+}
+.payright table td .datePanel {
+  position: absolute;
+  z-index: 10;
+  background: #fff;
+  border: 1px solid #d6d6d6;
+  width: 156px;
+}
+.payright table td .datePanel li {
+  float: left;
+  width: 31px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.payright table td .datePanel li:hover {
+  background: #eee;
+}
+.payright table .pay-tip {
+  display: none;
+}

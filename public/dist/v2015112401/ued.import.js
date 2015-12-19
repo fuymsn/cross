@@ -32,7 +32,7 @@ var Config = {
     //cdnPath: '',
     cdnPath: __cdn, //'http://s.1room1.co/public',
     imagePath: __cdn + '/public/images',
-    mode: 'online' // dev/online
+    mode: 'onlinedev' // dev/online
 };
 /**
  * 静态文件加载器 - v0.1.2 - 2015-11-25
@@ -122,15 +122,23 @@ var Application = function(config){
 
         var outStr = '';
         var fileDist = '';
-
+        
+        //线上调试模式
+        if(ins.config.mode == "onlinedev"){
+            fileDist = file;
+        }
+        
+        //线上模式
+        if(ins.config.mode == "online"){
+            fileDist = file.split(".")[0] + "-min." + fileType;
+        }
+        
         if (fileType == "js") {
-
-            fileDist = file.replace(".js", "-min.js");
+            
             outStr = __jsTemplate.replace("${src}", ins.distPath + "/js/" + fileDist + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         } else if (fileType == "css") {
 
-            fileDist = file.replace(".css", "-min.css");
             outStr = __cssTemplate.replace("${href}", ins.distPath + "/css/" + fileDist + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         }
@@ -200,7 +208,7 @@ var Application = function(config){
         }
 
         //通过不同的模式导入不同的文件
-        if (__mode == "online") {
+        if (__mode == "online" || __mode == "onlinedev") {
 
             //线上模式导入
             __importDist(__id, fileType, this, isHead);

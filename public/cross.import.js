@@ -86,15 +86,21 @@ var Application = function(config){
 
         var outStr = '';
         var fileDist = '';
-
+        
+        if(ins.config.mode == "onlinedev"){
+            fileDist = file;
+        }
+        
+        if(ins.config.mode == "online"){
+            fileDist = file.split(".")[0] + "-min." + fileType;
+        }
+        
         if (fileType == "js") {
-
-            fileDist = file.replace(".js", "-min.js");
+            
             outStr = __jsTemplate.replace("${src}", ins.distPath + "/js/" + fileDist + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         } else if (fileType == "css") {
 
-            fileDist = file.replace(".css", "-min.css");
             outStr = __cssTemplate.replace("${href}", ins.distPath + "/css/" + fileDist + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         }
@@ -164,7 +170,7 @@ var Application = function(config){
         }
 
         //通过不同的模式导入不同的文件
-        if (__mode == "online") {
+        if (__mode == "online" || __mode == "onlinedev") {
 
             //线上模式导入
             __importDist(__id, fileType, this, isHead);

@@ -315,7 +315,7 @@ module.exports = function(grunt) {
     });
 
     // 加载所有依赖插件
-    require('load-grunt-tasks')(grunt, { scope: ['dependencies', 'devDependencies'] });
+    require('load-grunt-tasks')(grunt, { scope: 'dependencies'});
 
     // 默认任务
     grunt.registerTask('css-lint', ['csslint']);

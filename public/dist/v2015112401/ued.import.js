@@ -32,7 +32,7 @@ var Config = {
     //cdnPath: '',
     cdnPath: __cdn, //'http://s.1room1.co/public',
     imagePath: __cdn + '/public/images',
-    mode: 'dev' // dev/online
+    mode: 'online' // dev/online
 };
 /**
  * 静态文件加载器 - v0.1.2 - 2015-11-25
@@ -44,7 +44,6 @@ var Application = function(config){
     //私有变量less，css，js模板
     var __jsTemplate = '<script src="${src}" charset="utf-8" type="text/javascript" itemid="${itemid}"><\/script>',
     __cssTemplate = '<link rel="stylesheet" type="text/css" href="${href}" itemid="${itemid}" />';
-    //__lessTemplate = '<link rel="stylesheet/less" type="text/css" href="${href}" itemid="${itemid}"/>';
 
     //容器
     //this.container = this;
@@ -93,10 +92,6 @@ var Application = function(config){
             //service文件目录配置
             this.servicePath = this.config.cdnPath + "/";
 
-            //添加less解析文件
-            //this.config.resource["commonJs.js"].push("core/less-2.5.3.min.js");
-            //less环境配置
-            //document.write('<script type="text/javascript">var less=less||{};less.env="development";<\/script>');
         };
 
     };

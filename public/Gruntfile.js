@@ -145,29 +145,23 @@ module.exports = function(grunt) {
                 src: ['.cross.concat.js']
             },
             js: {
-                src: ['dist/'+ publishVersion +'/js']
+                src: ['dist/'+ publishVersion + '/js']
             },
             css: {
-                src: ['dist/'+ publishVersion +'/css']
+                src: ['dist/'+ publishVersion + '/css']
             },
             img: {
-                src: ['dist/'+ publishVersion + '/i']
+                src: ['dist/'+ publishVersion + '/img']
             }
         },
 
         //将css背景图片资源复制到dist中
         copy: {
-            devimg: {
-                expand: true,
-                cwd: 'css/i',
-                src: '**',
-                dest: 'dev/css/i'
-            },
             img: {
                 expand: true,
-                cwd: 'css/i',
+                cwd: 'img',
                 src: '**',
-                dest: 'dist/' + publishVersion + '/i'
+                dest: 'dist/' + publishVersion + '/img'
             }
         },
 
@@ -248,8 +242,14 @@ module.exports = function(grunt) {
             dev:{
                 options: {
                     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+                    
                     //压缩
                     compress: false,
+                    
+                    //替换变量
+                    modifyVars: {
+                        imgPath: '"../../../img/"'
+                    }
                 },
                 files: lessDevCompile
             },
@@ -271,7 +271,12 @@ module.exports = function(grunt) {
                             browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'ie 8', 'ie 9']
                         })
                         
-                    ]
+                    ],
+                    
+                    //替换变量
+                    modifyVars: {
+                        imgPath: '"../img/"'
+                    }
                 },
                 files: lessCompile
             }
@@ -305,9 +310,9 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true, 
-                    cwd: 'dist/'+ publishVersion + '/i/',
+                    cwd: 'dist/'+ publishVersion + '/img/',
                     src: ['**/*.{png,jpg,jpeg}'], // 优化 cwd路径目录下所有 png/jpg/jpeg 图片
-                    dest: 'dist/'+ publishVersion + '/i/'
+                    dest: 'dist/'+ publishVersion + '/img/'
                 }]
             }
         }
@@ -324,7 +329,7 @@ module.exports = function(grunt) {
     //生成css
     grunt.registerTask('dev-css', ['less:dev', 'clean:tmp']);
     //dev
-    grunt.registerTask('dev', ['clean:dev', 'copy:devimg', 'less:dev', 'clean:tmp']);
+    grunt.registerTask('dev', ['clean:dev', 'less:dev', 'clean:tmp']);
     
     
     

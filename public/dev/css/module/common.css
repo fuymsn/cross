@@ -142,7 +142,7 @@ button.blueButton {
   color: #999;
 }
 .i-vc {
-  background-image: url(../i/reg.png);
+  background-image: url("../../../img/reg.png");
   background-repeat: no-repeat;
   width: 16px;
   height: 16px;
@@ -198,7 +198,7 @@ button.blueButton {
   border-radius: 6px;
 }
 .d-wrapper .d-close {
-  background-image: url(../i/common.png);
+  background-image: url("../../../img/common.png");
   background-position: 0px -62px;
   padding: 5px;
   height: 18px;
@@ -270,7 +270,7 @@ button.blueButton {
   background-position: 0px 0px;
   float: left;
   display: block;
-  background-image: url(../i/logo.jpg);
+  background-image: url("../../../img/logo.jpg");
 }
 /* 头部导航 */
 .headNav {
@@ -312,7 +312,7 @@ button.blueButton {
   position: absolute;
   top: 0px;
   left: 0px;
-  background-image: url(../i/common.png);
+  background-image: url("../../../img/common.png");
   background-position: 0px -147px;
   opacity: 0;
   display: block;
@@ -356,7 +356,7 @@ button.blueButton {
   text-align: center;
   width: 22px;
   height: 24px;
-  background-image: url(../i/header.png);
+  background-image: url("../../../img/header.png");
   margin: 0px auto;
 }
 .headlogin .head-login-item .head-icon-login {
@@ -467,14 +467,14 @@ button.blueButton {
   vertical-align: middle;
 }
 .inx-banner-login .loginAlready .loginInfo .loginDiamond {
-  background-image: url(../i/header.png);
+  background-image: url("../../../img/header.png");
   background-position: -168px 0px;
   width: 15px;
   height: 12px;
   margin-right: 5px;
 }
 .inx-banner-login .loginMail {
-  background-image: url("../i/common.png");
+  background-image: url("../../../img/common.png");
   width: 180px;
   height: 60px;
   background-position: -141px 0px;
@@ -649,7 +649,7 @@ button.blueButton {
 .inx-footer .inx-footer-suport .suport-box .suport-box-ico {
   width: 46px;
   height: 32px;
-  background-image: url(../i/header.png);
+  background-image: url("../../../img/header.png");
   float: left;
   margin: 5px 0 0 5px;
 }
@@ -693,7 +693,7 @@ button.blueButton {
 .hotListImg {
   width: 49px;
   height: 20px;
-  background-image: url(../i/levelIco.png);
+  background-image: url("../../../img/levelIco.png");
   display: inline-block;
   vertical-align: middle;
 }
@@ -1190,7 +1190,7 @@ h4 {
   border: 2px solid #999;
 }
 .m-load {
-  background-image: url(../i/bg-load.gif);
+  background-image: url("../../../img/bg-load.gif");
   width: 50px;
   height: 50px;
   margin: 20px auto;
@@ -1209,7 +1209,7 @@ h4 {
   cursor: pointer;
 }
 .tab-title .tab-item.active {
-  background-image: url(../i/common.png);
+  background-image: url("../../../img/common.png");
   background-position: 0px 0px;
 }
 .tab-title .tab-item.active span {
@@ -1288,7 +1288,7 @@ body > .inx-wrapper {
   left: 40px;
   width: 11px;
   height: 8px;
-  background-image: url(../i/common.png);
+  background-image: url("../../../img/common.png");
   background-position: -49px -41px;
 }
 .personDiv .personContent {
@@ -1396,7 +1396,7 @@ body > .inx-wrapper {
   line-height: 38px;
 }
 .personDiv .personContent-bottom .per-handle > i {
-  background-image: url(../i/common.png);
+  background-image: url("../../../img/common.png");
   margin-right: 5px;
   display: inline-block;
   vertical-align: middle;
@@ -1623,7 +1623,7 @@ body > .inx-wrapper {
   height: 56px;
   margin-bottom: 40px;
   cursor: pointer;
-  background-image: url(../i/common.png);
+  background-image: url("../../../img/common.png");
   position: relative;
 }
 .float-box .float-box-item div {

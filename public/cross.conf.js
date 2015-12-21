@@ -29,5 +29,5 @@ var Config = {
     //cdnPath: '',
     cdnPath: __cdn, //'http://s.1room1.co/public',
     imagePath: __cdn + '/public/images',
-    mode: 'online' // dev/online
+    mode: 'online' // dev/online/onlinedev
 };

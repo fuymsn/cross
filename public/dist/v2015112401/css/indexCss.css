@@ -447,7 +447,7 @@ html[xmlns] .flexslider .slides {
   height: 300px;
 }
 .side-search {
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   background-position: -179px -132px;
   width: 191px;
   height: 32px;
@@ -486,7 +486,7 @@ html[xmlns] .flexslider .slides {
   margin-right: 5px;
 }
 .side-hot {
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   background-position: 0px 0px;
   width: 194px;
   height: 54px;
@@ -545,7 +545,7 @@ html[xmlns] .flexslider .slides {
           perspective: 600px;
 }
 .side-rank .rank-content .rank-item .rank-num {
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   height: 41px;
   width: 41px;
   position: absolute;
@@ -723,7 +723,7 @@ html[xmlns] .flexslider .slides {
   z-index: 10;
 }
 .movieList dt .play {
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   background-position: 0px -54px;
   width: 178px;
   position: absolute;
@@ -751,7 +751,7 @@ html[xmlns] .flexslider .slides {
 .movieList .title .lock {
   width: 19px;
   height: 21px;
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   background-position: -179px -110px;
   position: absolute;
   right: 0px;
@@ -760,7 +760,7 @@ html[xmlns] .flexslider .slides {
 .movieList .title .limit {
   width: 21px;
   height: 21px;
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   background-position: -251px -110px;
   position: absolute;
   right: 0px;
@@ -769,7 +769,7 @@ html[xmlns] .flexslider .slides {
 .movieList .title .lvtype {
   width: 17px;
   height: 16px;
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   display: inline-block;
   margin-right: 5px;
   vertical-align: middle;
@@ -796,7 +796,7 @@ html[xmlns] .flexslider .slides {
   float: left;
   width: 18px;
   height: 18px;
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   background-position: -197px -54px;
 }
 .movieList .smallTitle .time span {
@@ -810,7 +810,7 @@ html[xmlns] .flexslider .slides {
   float: left;
   width: 18px;
   height: 18px;
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   background-position: -179px -54px;
 }
 .movieList .smallTitle .person span {
@@ -823,7 +823,7 @@ html[xmlns] .flexslider .slides {
 }
 /* 安全邮箱验证首页弹窗*/
 .mail-check-wrap {
-  background-image: url(../i/dialog-bg.png);
+  background-image: url("../img/dialog-bg.png");
   height: 100%;
   width: 100%;
   position: fixed;
@@ -840,7 +840,7 @@ html[xmlns] .flexslider .slides {
   top: 50%;
   left: 50%;
   position: absolute;
-  background-image: url(../i/mail-check.png);
+  background-image: url("../img/mail-check.png");
 }
 .mail-check-dialog .mail-check-reg {
   width: 110px;
@@ -869,7 +869,7 @@ html[xmlns] .flexslider .slides {
 }
 /*搜索栏*/
 .search-block {
-  background-image: url(../i/index.png);
+  background-image: url("../img/index.png");
   background-position: -179px -132px;
   width: 191px;
   height: 32px;

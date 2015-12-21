@@ -3,7 +3,6 @@ A Front-End Framework can be used to common website & mobile
 * A simple application to import javascript &amp; css into page as the sync &amp; async way
 * todo: can be applied to Grunt & webpack.
 * todo: framework can be simple used the same node_modules from grunt and webpack.
-* todo: css image and <img> should combine, in order to manage images as single and unified.
 
 # 基本操作
 ### 初始化package.json
@@ -26,3 +25,7 @@ $ grunt watch
   3. 优化dev/onlinedev/online三种模式切换
   4. 调试模式下，添加watch监听
   5. 调试模式下，移除页面加载less库和less配置文件
+* 2015-12-21 v0.2.1
+  1. 图片资源整合，可在grunt:less中配置图片资源路径
+  2. 简化图片配置和发布流程
+  3. 可对背景图片进行压缩

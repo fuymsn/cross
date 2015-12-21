@@ -171,7 +171,8 @@ module.exports = function(grunt) {
 
         watch: {
             options: {
-                spawn: true,
+                //spawn 设置为false 编译速度更快
+                spawn: false,
             },
             //配置文件修改监听
             configFiles: {

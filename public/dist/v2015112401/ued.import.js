@@ -32,7 +32,7 @@ var Config = {
     //cdnPath: '',
     cdnPath: __cdn, //'http://s.1room1.co/public',
     imagePath: __cdn + '/public/images',
-    mode: 'online' // dev/online
+    mode: 'dev' // dev/online
 };
 /**
  * 静态文件加载器 - v0.1.2 - 2015-11-25

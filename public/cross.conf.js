@@ -1,10 +1,10 @@
 //cdn 数组
 var cdnPathArr = [
-	'http://s.1room1.co',
-	'http://s.mvbroadcast.com',
-	'http://s.daxiubroadcast.net',
-	'http://s.mmbroadcast.net',
-	'http://s.mvbroadcast.net'
+	'http://s.1room1.com'
+	// 'http://s.mvbroadcast.com',
+	// 'http://s.daxiubroadcast.net',
+	// 'http://s.mmbroadcast.net',
+	// 'http://s.mvbroadcast.net'
 ];
 
 /**

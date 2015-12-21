@@ -7,8 +7,7 @@ var Application = function(config){
 
     //私有变量less，css，js模板
     var __jsTemplate = '<script src="${src}" charset="utf-8" type="text/javascript" itemid="${itemid}"><\/script>',
-    __cssTemplate = '<link rel="stylesheet" type="text/css" href="${href}" itemid="${itemid}" />',
-    __lessTemplate = '<link rel="stylesheet/less" type="text/css" href="${href}" itemid="${itemid}"/>';
+    __cssTemplate = '<link rel="stylesheet" type="text/css" href="${href}" itemid="${itemid}" />';
 
     //容器
     //this.container = this;
@@ -53,14 +52,10 @@ var Application = function(config){
         if (this.config.mode == "dev") {
 
             //dev环境路径配置
-            this.cdnPath = this.cdnPath + "/public/";
+            this.cdnPath = this.cdnPath + "/public";
             //service文件目录配置
             this.servicePath = this.config.cdnPath + "/";
 
-            //添加less解析文件
-            this.config.resource["commonJs.js"].push("js/core/less-2.5.3.min.js");
-            //less环境配置
-            document.write('<script type="text/javascript">var less=less||{};less.env="development";<\/script>');
         };
 
     };
@@ -131,12 +126,13 @@ var Application = function(config){
                 if(__isServiceFile(files[i])){
                     outStr = __jsTemplate.replace("${src}", ins.servicePath + files[i]).replace("${itemid}", files[i]);
                 }else{
-                    outStr = __jsTemplate.replace("${src}", ins.cdnPath + files[i]).replace("${itemid}", files[i]);
+                    outStr = __jsTemplate.replace("${src}", ins.cdnPath + "/js/" + files[i]).replace("${itemid}", files[i]);
                 }
 
             } else if (fileType == "css") {
 
-                outStr = __lessTemplate.replace("${href}", ins.cdnPath + files[i]).replace("${itemid}", files[i]);
+                outStr = __cssTemplate.replace("${href}", ins.cdnPath + "/dev/css/" + files[i]).replace("${itemid}", files[i]).replace(".less", ".css");
+            
             };
 
             if(isHead){

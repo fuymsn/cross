@@ -1,0 +1,140 @@
+/*! cross-framework 2015-12-21 */
+/**
+ * @author Young
+ * @description 首页任务相关功能
+ */
+.task {
+  position: fixed;
+  bottom: 0px;
+  right: 10%;
+  z-index: 500;
+  width: 366px;
+  display: none;
+}
+.task .task-header {
+  position: relative;
+  height: 140px;
+  background-image: url(../i/task.png);
+  background-position: 0px 0px;
+  animation: myfirst 2s;
+}
+.task .task-header .task-header-dialog {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background-image: url(../i/task.png);
+  background-position: -366px 0px;
+  width: 104px;
+  height: 55px;
+  cursor: pointer;
+  animation: dialogAminate 1.5s infinite;
+  -webkit-animation: dialogAminate 1.5s infinite;
+}
+.task .task-content {
+  display: none;
+  height: 495px;
+}
+.task .task-content .task-content-top {
+  background-image: url(../i/task.png);
+  background-position: 0px -141px;
+  height: 3px;
+  width: 366px;
+}
+.task .task-content .task-content-wrapper {
+  padding: 13px 0px 20px 14px;
+  margin: 0px 0px 0px 15px;
+  height: 420px;
+  width: 319px;
+  overflow: auto;
+  background-color: #8b0ae5;
+}
+.task .task-content .task-content-bottom {
+  background-image: url(../i/task.png);
+  background-position: 0px -145px;
+  height: 37px;
+  width: 366px;
+}
+.task-header_title {
+  text-align: center;
+  text-indent: -9999px;
+}
+.task-header_close {
+  display: none;
+  position: absolute;
+  right: 0px;
+  bottom: 15px;
+  color: #60099d;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+.task-item li {
+  background-image: url(../i/task.png);
+  background-position: 0px -219px;
+  background-repeat: no-repeat;
+}
+.task-item li .task-content_title,
+.task-item li .task-content_info,
+.task-item li .task-content_btnbox {
+  padding: 9px 3px;
+  line-height: 15px;
+  display: inline-block;
+  *display: inline;
+}
+.task-item li .task-content_title {
+  color: #fff100;
+  width: 90px;
+}
+.task-item li .task-content_info {
+  color: #fff;
+  width: 130px;
+}
+.task-item li .task-content_btn {
+  background-image: url(../i/task.png);
+  background-position: 0px -183px;
+  display: block;
+  height: 27px;
+  width: 62px;
+  text-align: center;
+  color: #000;
+  line-height: 27px;
+  cursor: pointer;
+  padding: 0px;
+}
+.task-item .hotListImg,
+.task-item .badge {
+  display: inline-block;
+  vertical-align: middle;
+}
+.task-item .task-content_points img {
+  vertical-align: middle;
+  margin-right: 3px;
+}
+.task-item .task-content_bonus_mount {
+  vertical-align: middle;
+}
+.task-item .task-content_bonus_exp {
+  color: #00ffff;
+}
+@keyframes dialogAminate {
+  0% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+@-webkit-keyframes dialogAminate {
+  0% {
+    -webkit-transform: rotate(10deg);
+  }
+  50% {
+    -webkit-transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(10deg);
+  }
+}

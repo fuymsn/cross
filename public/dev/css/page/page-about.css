@@ -1,0 +1,215 @@
+/*! cross-framework 2015-12-21 */
+/**
+ * 关于我们及相关页面
+ * @author Young
+ * @contacts young@kingjoy.co
+ */
+/*
+ * variable less file, this file is module for button
+ * Author: Young
+ * important module for the project, if u would like to modify the file, pls contact Young
+ * mail: young@kingjoy.co
+ */
+.help {
+  position: relative;
+}
+.help .help-item {
+  margin-top: 40px;
+  position: relative;
+}
+.help .help-line {
+  width: 3px;
+  height: 100%;
+  background-color: #f3c4dc;
+  position: absolute;
+  left: 129px;
+}
+.help-head {
+  width: 142px;
+  margin-top: 6px;
+  margin-right: 15px;
+  text-align: right;
+  position: absolute;
+  z-index: 3;
+}
+.help-head .help-title {
+  font-size: 18px;
+  line-height: 1.5em;
+  color: #e50080;
+  display: inline-block;
+  vertical-align: middle;
+}
+.help-head i {
+  background-image: url(../i/about/help-title-icon.jpg);
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.help-head-apply {
+  margin-top: 60px;
+}
+.displayStrenth {
+  background-image: url(../i/about/about-extend.png);
+  width: 651px;
+  height: 263px;
+  padding: 0px;
+}
+.help-item-content {
+  width: 830px;
+  float: right;
+}
+.help-item-content .help-apply {
+  width: 128px;
+  height: 170px;
+  float: left;
+  margin-right: 140px;
+  cursor: pointer;
+}
+.help-item-content .help-apply.help-apply-host {
+  background-image: url(../i/about/help-host.jpg);
+}
+.help-item-content .help-apply.help-apply-arc {
+  background-image: url(../i/about/help-str.jpg);
+}
+.help-item-content .help-apply.help-apply-sug {
+  background-image: url(../i/about/help-su.jpg);
+}
+.displaySuggestion .display-item {
+  margin-bottom: 10px;
+}
+.displaySuggestion .display-item label {
+  margin-right: 20px;
+}
+.displaySuggestion .d-help-ser-ipt {
+  width: 100px !important;
+}
+.displaySuggestion .d-help-title {
+  margin-right: 10px;
+}
+.displaySuggestion .d-help-ta {
+  width: 450px !important;
+}
+.finishSuggestion {
+  width: 400px;
+  color: #3399cc;
+  line-height: 1.6em;
+  font-size: 14px;
+}
+.help-qa .help-qa-item {
+  padding: 10px 0px;
+}
+.help-qa .help-qa-item .help-qa-question {
+  margin-bottom: 5px;
+  color: #333;
+}
+.help-qa .help-qa-item .help-qa-question .i-q {
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url(../i/about/help-que.jpg);
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+}
+.help-qa .help-qa-item .help-qa-question .help-q {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: normal;
+}
+.help-qa .help-qa-item .help-qa-question .i-a {
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url(../i/about/help-ans.jpg);
+  height: 18px;
+  width: 47px;
+  cursor: pointer;
+}
+.help-qa .help-qa-item .help-qa-answer {
+  color: #666;
+  line-height: 2em;
+  display: none;
+}
+.about .about-item {
+  margin: 50px 0px;
+}
+.about .about-item .about-img1 {
+  background-image: url(../i/about/about-us1.jpg);
+  width: 169px;
+  height: 219px;
+  float: left;
+}
+.about .about-item .about-img2 {
+  background-image: url(../i/about/about-us2.jpg);
+  width: 201px;
+  height: 241px;
+  float: right;
+}
+.about .about-item .about-p {
+  width: 750px;
+}
+.about .about-item .about-p p {
+  font-size: 18px;
+  line-height: 1.5em;
+  margin-bottom: 20px;
+}
+.state li {
+  font-size: 16px;
+  padding: 25px 0px;
+  border-bottom: 1px solid #ddd;
+  line-height: 1.8em;
+}
+.state li.last {
+  color: #ff2700;
+  border: none;
+}
+/** 中间页面 **/
+.page-tip-img {
+  background-image: url(../i/transfer.png);
+  width: 839px;
+  height: 360px;
+  display: block;
+  margin: 50px auto;
+  position: relative;
+}
+.page-tip-img .btn {
+  position: absolute;
+  top: 240px;
+  left: 416px;
+}
+.page-tip-img .tip-seconds-wrap {
+  position: absolute;
+  top: 250px;
+  left: 566px;
+  font-size: 16px;
+  font-weight: bold;
+}
+/*
+ * 500
+ */
+#page-500-wrap,
+#page-404-wrap {
+  background-color: #FF6F04;
+}
+#page-500,
+#page-404 {
+  width: 1000px;
+  height: 676px;
+  display: block;
+}
+.page-500-btn {
+  display: block;
+  position: absolute;
+  top: 367px;
+  left: 646px;
+  width: 160px;
+  height: 40px;
+}
+.page-404-btn {
+  display: block;
+  position: absolute;
+  top: 415px;
+  left: 400px;
+  width: 160px;
+  height: 40px;
+}

@@ -10,18 +10,20 @@ module.exports = function(grunt) {
     //subject public version
     var subPublishVersion = pkg.subPublishVersion;
     
-    /**
-     *  合并文件的映射关系
-     */
     var pageList = require("./cross.list.js"),
 
         //base path
         baseJsPath = "js/",
-
+        baseCssPath = "css/",
+        
         //serivce path => /web/service/user.js @example /回到public的父级
         serviceJsPath = "../",
-        baseCssPath = "css/",
-        distPath = 'dist/'+ publishVersion + '/';
+        
+        //dist path
+        distPath = 'dist/'+ publishVersion + '/',
+        
+        //dev path
+        devPath = 'dev/';
 
     //判断是否从service文件夹导入
     var isServiceFile = function(str){
@@ -81,9 +83,23 @@ module.exports = function(grunt) {
         jsMinify[jsDistMinPath] = jsDistPath;
     }
     
-    
     //console.log(jsConcat);
     //console.log(jsMinify);
+    
+    //开发模式编译数组列表
+    var lessDevCompile = {};
+    
+    for(var i in pageList){
+        
+        if(i.indexOf(".js") > -1){ continue; }
+        
+        for(var j = 0; j < pageList[i].length; j++){
+            lessDevCompile[devPath + "css/" + pageList[i][j].replace(".less", ".css")] = baseCssPath + pageList[i][j];
+        }
+        
+    }
+    
+    //console.log(lessDevCompile);
 
     //生成cross.concat.js
     grunt.file.write('.cross.concat.js', 'window.UED_PUBLISH_VERSION = "'+ publishVersion + '";\nwindow.UED_SUB_PUBLISH_VERSION = "'+ subPublishVersion +'";\nwindow.UED_LIST = '+ JSON.stringify(pageList) +';');
@@ -122,6 +138,9 @@ module.exports = function(grunt) {
             dist: {
                 src: ['dist/']
             },
+            dev: {
+                src: ['dev/']
+            },
             tmp: {
                 src: ['.cross.concat.js']
             },
@@ -138,6 +157,12 @@ module.exports = function(grunt) {
 
         //将css背景图片资源复制到dist中
         copy: {
+            devimg: {
+                expand: true,
+                cwd: 'css/i',
+                src: '**',
+                dest: 'dev/css/i'
+            },
             img: {
                 expand: true,
                 cwd: 'css/i',
@@ -151,8 +176,22 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            files: '<config:lint.files>',
-            tasks: 'lint qunit'
+            options: {
+                spawn: true,
+            },
+            //配置文件修改监听
+            configFiles: {
+                files: [ 'Gruntfile.js'],
+                options: {
+                    reload: true
+                }
+            },
+            
+            //less文件修改监听
+            less: {
+                files: ['css/*/*.less', 'css/*/*.css'],
+                tasks: ['less:dev']
+            },
         },
 
         jshint: {
@@ -205,6 +244,18 @@ module.exports = function(grunt) {
         },
 
         less:{
+            //开发模式
+            dev:{
+                options: {
+                    banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+                    //压缩
+                    compress: false,
+                },
+                files: lessDevCompile
+            },
+            
+            //线上发布
+            
             dist:{
                 options: {
                     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
@@ -269,11 +320,20 @@ module.exports = function(grunt) {
     // 默认任务
     grunt.registerTask('css-lint', ['csslint']);
     
+    //注册开发模式
+    //生成css
+    grunt.registerTask('dev-css', ['less:dev', 'clean:tmp']);
+    //dev
+    grunt.registerTask('dev', ['clean:dev', 'copy:devimg', 'less:dev', 'clean:tmp']);
+    
+    
+    
+    //注册线上模式
     //清除dist目录
     grunt.registerTask('dist-clean', ['clean:dist']);
     
     //生成css
-    grunt.registerTask('dist-css', ['clean:css', 'less', 'csscomb', 'cssmin']);
+    grunt.registerTask('dist-css', ['clean:css', 'less:dist', 'csscomb', 'cssmin']);
     
     //生成js
     grunt.registerTask('dist-js', ['clean:js', 'concat:import', 'uglify']);
@@ -284,9 +344,6 @@ module.exports = function(grunt) {
     //清除残留文件
     grunt.registerTask('dist-cleantmp', ['clean:tmp']);
 
-    //dev
-    //grunt.registerTask('dev', ['clean:dist', 'concat:default', 'copy:cssimg', 'copy:less', 'less', 'csscomb', 'cssmin', 'uglify', 'clean:cleantmp']);
-    
     //online
     grunt.registerTask('default', ['dist-clean', 'dist-css', 'dist-js', 'dist-img', 'dist-cleantmp']);
 

@@ -20,3 +20,9 @@ $ grunt watch
 * 2015-12-18 v0.1.1 update grunt with csscomb
 * 2015-12-19 v0.1.2 update grunt js's process of concat & uglify
 * 2015-12-19 v0.1.3 put a unified config into package.json
+* 2015-12-21 v0.2.0 
+  1. 新增dev开发调试模式
+  2. 新增onlinedev线上调试模式
+  3. 优化dev/onlinedev/online三种模式切换
+  4. 调试模式下，添加watch监听
+  5. 调试模式下，移除页面加载less库和less配置文件

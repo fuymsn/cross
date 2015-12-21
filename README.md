@@ -7,11 +7,14 @@ A Front-End Framework can be used to common website & mobile
 
 # 基本操作
 ### 初始化package.json
+``shell
 $ npm init
+``
 然后按照步骤进行操作
 ### 开发模式下，开启less代码编译监听
+``shell
 $ grunt watch
-
+``
 # Release History
 * 2015-12-17 v0.1.0 optimize the process of less compilation
 * 2015-12-18 v0.1.1 update grunt with csscomb

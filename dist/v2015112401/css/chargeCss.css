@@ -1,0 +1,120 @@
+/**
+ * 充值相关页面
+ * @author Young
+ * @contacts young@kingjoy.co
+ */
+/*
+ * variable less file, this file is module for button
+ * Author: Young
+ * important module for the project, if u would like to modify the file, pls contact Young
+ * mail: young@kingjoy.co
+ */
+.charge-container {
+  width: 1140px !important;
+}
+.charge-table .charge-notpay,
+.charge-table .charge-unknown {
+  color: #e50080;
+  cursor: pointer;
+}
+.charge-table .charge-paid {
+  color: #ccc;
+}
+.charge-table .charge-num {
+  font-weight: bold;
+}
+.charge-table .charge-pay {
+  color: #ff2700;
+  margin-right: 10px;
+}
+.charge-select {
+  width: 480px;
+  float: left;
+}
+.charge-select .charge-title {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+.charge-select .charge-box {
+  margin-bottom: 40px;
+}
+.charge-select .charge-box .charge-box-col {
+  width: 235px;
+  float: left;
+}
+.charge-select .charge-box label {
+  color: #999;
+  display: block;
+  padding: 8px 0px;
+}
+.charge-select .charge-box label [name="charge-price"] {
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 5px;
+}
+.charge-select .charge-box label .dib {
+  vertical-align: top;
+}
+.charge-select .charge-box label .charge-price {
+  vertical-align: middle;
+  display: inline-block;
+  color: #ff2700;
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.charge-select .charge-box label .charge-diamond {
+  display: inline-block;
+  width: 100px;
+  line-height: 17px;
+}
+.charge-select .charge-box label .charge-ipt {
+  margin: 0px 5px;
+  width: 100px;
+}
+.charge-select .charge-box-hz label {
+  display: inline-block;
+  margin: 15px 40px 15px 0px;
+}
+.charge-select .charge-box-hz label [name="channel"] {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.charge-select .charge-box-hz label .charge-img-plat {
+  background-image: url(../i/pay.png);
+  width: 171px;
+  height: 42px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.charge-select .charge-box-hz label .charge-img-plat-hx {
+  background-position: 0px 0px;
+}
+.charge-select .charge-box-hz label .charge-img-plat-xs {
+  background-position: -172px 0px;
+}
+.charge-select .charge-btnbox {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+.charge-select .charge-btnbox #chargePay {
+  display: inline-block;
+}
+.charge-select .charge-tips,
+.charge-select .charge-caution {
+  color: #ff0000 !important;
+  font-size: 14px;
+  line-height: 18px;
+}
+.charge-ad {
+  float: right;
+  width: 600px;
+  height: 300px;
+}
+.charge-ad img {
+  width: 600px;
+  height: 300px;
+}

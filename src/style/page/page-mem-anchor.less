@@ -1,0 +1,89 @@
+/**
+ * 主播中心页面
+ * @author Young
+ * @contacts young@kingjoy.co
+ */
+
+@import "../module/variable.less";
+
+.hostDetails{
+	margin-bottom: 20px;
+	img{
+		display: block;
+		margin-right: 20px;
+		float: left;
+	}
+	.upload-box{
+		float: left;
+		.uploadify{
+			display: block;
+		}
+	}
+}
+
+.picGrp{
+	margin: 10px 40px 25px 0;
+	padding: 10px;
+	border:1px solid @boc;
+	box-shadow: 3px 3px 3px #ccc;
+	float: left;
+	dd{
+		margin-top: 10px;
+		.toolDate{
+			float: left;
+		}
+
+	}
+}
+
+.toolGrp{
+	width: 100px;
+	float: right;
+	line-height: 13px;
+	
+	span{
+		float: left;
+		width: 13px;
+		height: 13px;
+		background: url(../i/editPic.jpg);
+	}
+
+	a{
+		float: left;
+		margin-left: 10px;
+		&:hover{
+			color: @orange;
+		}
+		&:hover .edtIco{
+			background-position: -26px 0;
+		}
+		&:hover .delIco{
+			background-position: 0px 0;
+		}
+	}
+
+	.edtIco{
+		background-position: -39px 0;
+	}
+	.delIco{
+		background-position: -13px 0;
+	}
+}
+
+.live-count{
+	padding: 20px 0px;
+	font-size: 14px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	.lc-title{
+		color: @orange;
+		font-size: 16px;
+	}
+	.lc-sub-title{
+		color: #666;
+	}
+	.lc-sub-content{
+		color: @red;
+		margin-right: 30px;
+	}
+}

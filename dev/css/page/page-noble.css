@@ -1,0 +1,25 @@
+/*! cross-framework 2015-12-22 */
+.noble-table {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+.noble-table tr {
+  height: 60px;
+  text-align: center;
+}
+.noble-table tr td {
+  border: 1px solid #ddd;
+}
+.noble-table tr td button {
+  margin: 0px auto;
+  width: 65px;
+}
+.noble-table tr td span.noble-table-diamond {
+  background-image: url(../i/header.png);
+  background-position: -168px 0px;
+  width: 15px;
+  height: 12px;
+  margin-left: 5px;
+  display: inline-block;
+}

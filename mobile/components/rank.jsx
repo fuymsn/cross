@@ -9,7 +9,7 @@ require("../css/grid.css");
 require("../less/rank.less");
 //var bgimg = require("../image/ranking.png");
 
-window.PIC_PATH = "http://p1.1room1.co/public";
+window.PIC_PATH = "http://p1.1.co/public";
 window.V_PATH = "http://" + location.hostname.replace(/www./,'v.');
 
 var getRankList = function(successCallback){

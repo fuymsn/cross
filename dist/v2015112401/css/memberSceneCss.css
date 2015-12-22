@@ -1,0 +1,11 @@
+/**
+ * 装备页面
+ * @author Young
+ * @contacts young@kingjoy.co
+ */
+.state.active {
+  color: #008000;
+}
+.equipment {
+  text-decoration: underline;
+}

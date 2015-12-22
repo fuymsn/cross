@@ -222,7 +222,7 @@ var IndexItem = React.createClass({
 
 		var data = this.props.videoItem;
 
-		window.PIC_PATH = "http://p1.1room1.co/public";
+		window.PIC_PATH = "http://p1.1.co/public";
 
 		//data['headimg'] = /\d{13}/.test(data['headimg']) ? (window.PIC_PATH + "/images/anchorimg/" + data["uid"] + "_" + data['headimg'].match(/\d{13}/)[0] + ".jpg") : window.PIC_PATH + '/images/vzhubo.jpg';
 		data['headimg'] = window.PIC_PATH + '/images/vzhubo.jpg';

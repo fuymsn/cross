@@ -1,0 +1,551 @@
+/*! cross-framework 2015-12-22 */
+/**
+ * @description 首页
+ * @author Young
+ * @contacts young@kingjoy.co
+ */
+/*
+ * variable less file, this file is module for button
+ * Author: Young
+ * important module for the project, if u would like to modify the file, pls contact Young
+ * mail: young@kingjoy.co
+ */
+.main-left {
+  width: 760px;
+  float: left;
+}
+.main-left .main-item {
+  margin: 20px 0px 30px 0px;
+}
+.main-left #inxFavBox {
+  display: none;
+}
+.main-left #inxResBox {
+  display: none;
+}
+#tabBtnfav,
+#tabBtnres {
+  display: none;
+}
+.main-item .main-head {
+  position: relative;
+}
+.main-item .main-head .main-title {
+  color: #333;
+  line-height: 24px;
+}
+.main-item .main-head .main-sub {
+  position: absolute;
+  right: 0px;
+  top: 5px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+}
+.main-item .main-content {
+  margin-right: -35px;
+  min-height: 206px;
+  position: relative;
+}
+.main-right {
+  float: right;
+  width: 210px;
+}
+/* slide show */
+.inx-banner .flexslider {
+  width: 1000px;
+  height: 300px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+  border: 4px solid #ccc;
+}
+.inx-banner .flexslider .slide-bg {
+  display: block;
+  width: 1000px;
+  height: 300px;
+}
+.inx-banner .flexslider .slide-bg img {
+  width: 1000px;
+  height: 300px;
+}
+.side-search {
+  background-image: url("../../../src/img/index.png");
+  background-position: -179px -132px;
+  width: 191px;
+  height: 32px;
+  position: relative;
+  margin-top: 20px;
+}
+.side-search #searchIpt {
+  top: 5px;
+  position: relative;
+  left: 12px;
+  border: 0px;
+  color: #333;
+  font-size: 14px;
+  width: 150px;
+}
+.side-search #searchIptBtn {
+  display: block;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+/* 在线人数统计 */
+.side-online {
+  margin-top: 20px;
+}
+.side-online dt {
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 5px;
+}
+.side-online .side-online-num {
+  font-size: 36px;
+  color: #ff3300;
+  margin-right: 5px;
+}
+.side-hot {
+  background-image: url("../../../src/img/index.png");
+  background-position: 0px 0px;
+  width: 194px;
+  height: 54px;
+  margin-top: 25px;
+  display: block;
+  cursor: pointer;
+}
+.side-hot:active {
+  background-position: -198px 0px;
+}
+.side-rank {
+  margin-top: 40px;
+}
+.side-rank .rank-title {
+  color: #333;
+  line-height: 24px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.side-rank .rank-tab {
+  display: inline-block;
+  margin-left: 10px;
+  position: relative;
+  top: 7px;
+}
+.side-rank .rank-tab li {
+  padding: 0px 5px;
+  border-right: 1px solid #ccc;
+  float: left;
+  color: #999;
+  cursor: pointer;
+}
+.side-rank .rank-tab li.active {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff2700;
+  position: relative;
+  top: -4px;
+}
+.side-rank .rank-content {
+  margin-top: 10px;
+  z-index: 10;
+  position: relative;
+}
+.side-rank .rank-content .rank-item {
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 15px 0px;
+  color: #666;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  perspective: 600px;
+}
+.side-rank .rank-content .rank-item .rank-num {
+  background-image: url("../../../src/img/index.png");
+  height: 41px;
+  width: 41px;
+  position: absolute;
+  top: 4px;
+}
+.side-rank .rank-content .rank-item .rank-num-0 {
+  background-position: -413px 0px;
+}
+.side-rank .rank-content .rank-item .rank-num-1 {
+  background-position: -413px -41px;
+}
+.side-rank .rank-content .rank-item .rank-num-2 {
+  background-position: -413px -82px;
+}
+.side-rank .rank-content .rank-item .rank-num-3 {
+  background-position: -413px -123px;
+}
+.side-rank .rank-content .rank-item .rank-num-4 {
+  background-position: -413px -164px;
+}
+.side-rank .rank-content .rank-item .rank-text {
+  width: 125px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-indent: 50px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+}
+.side-rank .rank-content .rank-item .rank-text-exp {
+  width: 180px;
+}
+.side-rank .rank-content .rank-item .rank-badge {
+  position: absolute;
+  top: 11px;
+  right: 37px;
+  z-index: 5;
+}
+.side-rank .rank-content .rank-item .rank-mark {
+  position: absolute;
+  top: 15px;
+  right: -11px;
+}
+.side-rank .rank-content .rank-item .rank-text-bold {
+  font-size: 14px;
+  color: #ff2700;
+  font-weight: bold;
+}
+.side-rank .rank-content .rank-item:hover .personDiv {
+  visibility: visible;
+  width: 353px;
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+.side-rank .rank-content .rank-item:hover {
+  transform: scale(1.1);
+  background-color: #ff2700;
+  color: #fff;
+  font-weight: bold;
+  width: 220px;
+}
+.side-rank .rank-content .rank-item:hover .rank-text {
+  color: #fff !important;
+}
+.side-rank .rank-content .rank-item:hover .rank-mark {
+  right: 0px;
+}
+.side-rank .rank-content .rank-item:hover .rank-badge {
+  right: 48px;
+}
+.side-rank .rank-content .rank-item .personDiv {
+  left: -353px;
+  top: -70px;
+  display: block !important;
+  visibility: hidden;
+  width: 0px;
+  transition: all 0.2s ease-out;
+  transform: rotateY(90deg);
+  opacity: 0;
+}
+.side-rank .rank-content .rank-item .personDiv .arrow {
+  display: none;
+}
+.side-ad {
+  margin-top: 40px;
+  width: 210px;
+  height: 224px;
+}
+.side-ad .flexslider {
+  height: 224px;
+  width: 210px;
+}
+.side-ad .flexslider img {
+  height: 224px;
+  width: 210px;
+}
+.side-ad .flexslider .flex-control-nav {
+  bottom: -25px;
+}
+.inx-more {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.inx-more .tab-title {
+  border-bottom: 1px solid #e2e2e2;
+}
+.inx-more .inx-more-tab {
+  margin-right: -26px;
+}
+.inx-more .inx-more-btn {
+  background-color: #aaa;
+  text-align: center;
+  color: #fff;
+  width: 200px;
+  clear: both;
+  font-size: 16px;
+  padding: 7px 5px;
+  border-radius: 5px;
+  margin: 0px auto;
+  cursor: pointer;
+  display: none;
+}
+.inx-more .movieList {
+  margin: 15px 27px 10px 0;
+}
+/* 主体视频列表 */
+.movieList {
+  width: 178px;
+  margin: 20px 16px 0 0;
+  position: relative;
+  float: left;
+}
+.movieList dt .movieBlock {
+  display: block;
+  cursor: pointer;
+}
+.movieList dt .movieBlock > img {
+  width: 178px;
+  height: 134px;
+  display: block;
+}
+.movieList dt .movieBlock:hover .play {
+  display: block;
+}
+.movieList dt .status {
+  width: 40px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: #fff;
+  line-height: 20px;
+  background-color: #999;
+}
+.movieList dt .status.hot {
+  background-color: #e50080;
+}
+.movieList dt .status.live {
+  background-color: #ff2700;
+}
+.movieList dt .status.free {
+  background-color: #999;
+}
+.movieList dt .badge {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 10;
+}
+.movieList dt .play {
+  background-image: url("../../../src/img/index.png");
+  background-position: 0px -54px;
+  width: 178px;
+  position: absolute;
+  display: none;
+  height: 134px;
+  z-index: 2;
+  top: 0px;
+  left: 0px;
+}
+.movieList .title {
+  position: relative;
+  padding: 8px 0px 5px 0px;
+}
+.movieList .title a {
+  font-size: 14px;
+  line-height: 18px;
+  color: #333333;
+  width: 135px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+}
+.movieList .title .lock {
+  width: 19px;
+  height: 21px;
+  background-image: url("../../../src/img/index.png");
+  background-position: -179px -110px;
+  position: absolute;
+  right: 0px;
+  top: 6px;
+}
+.movieList .title .limit {
+  width: 21px;
+  height: 21px;
+  background-image: url("../../../src/img/index.png");
+  background-position: -251px -110px;
+  position: absolute;
+  right: 0px;
+  top: 6px;
+}
+.movieList .title .lvtype {
+  width: 17px;
+  height: 16px;
+  background-image: url("../../../src/img/index.png");
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.movieList .title .lvtype.lvtype1 {
+  background-position: -199px -110px;
+}
+.movieList .title .lvtype.lvtype2 {
+  background-position: -216px -110px;
+}
+.movieList .title .lvtype.lvtype3 {
+  background-position: -233px -110px;
+}
+.movieList .smallTitle {
+  color: #999;
+  line-height: 20px;
+  position: relative;
+}
+.movieList .smallTitle .time {
+  float: left;
+}
+.movieList .smallTitle .time .time-ico {
+  margin: 1px 3px 0 0;
+  float: left;
+  width: 18px;
+  height: 18px;
+  background-image: url("../../../src/img/index.png");
+  background-position: -197px -54px;
+}
+.movieList .smallTitle .time span {
+  margin: 0 3px;
+}
+.movieList .smallTitle .person {
+  float: right;
+}
+.movieList .smallTitle .person .person-ico {
+  margin: 1px 3px 0 0;
+  float: left;
+  width: 18px;
+  height: 18px;
+  background-image: url("../../../src/img/index.png");
+  background-position: -179px -54px;
+}
+.movieList .smallTitle .person span {
+  margin: 0 3px;
+}
+.movieList .btn-reserve {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+/* 安全邮箱验证首页弹窗*/
+.mail-check-wrap {
+  background-image: url("../../../src/img/dialog-bg.png");
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  display: none;
+}
+.mail-check-dialog {
+  width: 512px;
+  height: 381px;
+  margin-left: -256px;
+  margin-top: -190px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  background-image: url("../../../src/img/mail-check.png");
+}
+.mail-check-dialog .mail-check-reg {
+  width: 110px;
+  height: 40px;
+  left: 293px;
+  top: 236px;
+  position: absolute;
+}
+.mail-check-dialog .mail-check-close {
+  cursor: pointer;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  right: 40px;
+  top: 0px;
+}
+.ordDialog img {
+  width: 270px;
+}
+.ordDialog .ordDialogContent h4 {
+  font-size: 16px;
+  margin: 10px 0px;
+}
+.ordDialog .ordDialogContent p {
+  margin: 10px 0px 0px 0px;
+}
+/*搜索栏*/
+.search-block {
+  background-image: url("../../../src/img/index.png");
+  background-position: -179px -132px;
+  width: 191px;
+  height: 32px;
+  position: relative;
+  float: right;
+}
+.search-block input {
+  position: relative;
+  left: 12px;
+  border: 0px;
+  color: #333;
+  font-size: 14px;
+  width: 150px;
+  line-height: 1.2em;
+}
+.search-block a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.search-result {
+  font-size: 16px;
+  color: #333;
+}
+.search-result a {
+  color: #666;
+  text-decoration: underline;
+}
+.search-result .search-result-num {
+  color: #e50080;
+  font-weight: bold;
+  font-size: 20px;
+}
+/*限制登录*/
+.limited-d p {
+  text-align: center;
+  margin: 10px 0px;
+}
+.limited-d .limited-btnbox {
+  width: 280px;
+  margin: 0px auto;
+}
+.limited-d .limited-btnbox a {
+  display: block;
+  width: 90px;
+}
+.limited-table {
+  float: left;
+}
+.limited-table td,
+.limited-table th {
+  border: 1px solid #eee;
+  padding: 10px;
+}
+.limited-font-i {
+  color: #e50080;
+}
+.limited-table_left {
+  margin-right: 15px;
+}

@@ -58,17 +58,13 @@ $ npm install
 ##### 2.运行grunt
 ```shell
 $ grunt
-<<<<<<< HEAD
 ```
 ##### 3.在html页面中导入入口文件
 ```html
 <script type="text/javascript" src="dist/v2015112401/ued.import.js?v=1.0"></script>
 ```
-=======
-``
 ##### 3.在html页面中导入入口文件script
 src="dist/v2015112401/ued.import.js?v=1.0"
->>>>>>> 0519b12bc5bb00d70c1f3f1ce9ba65ab1f43cf76
 ##### 4.在cross.list.js中配置页面css和js依赖
 ```js
 module.exports = {

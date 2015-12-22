@@ -46,9 +46,9 @@ A Front-End Framework can be used to common website & mobile
 # 环境配置
 * node.js安装, [安装入口](https://nodejs.org/en/)
 * npm依赖包安装，执行
-``shell
+```shell
 $ npm install
-``
+```
 
 # 基本操作
 ### 操作步骤
@@ -56,15 +56,15 @@ $ npm install
 1. 安装nodejs
 2. 安装npm依赖包
 ##### 2.运行grunt
-``shell
+```shell
 $ grunt
-``
+```
 ##### 3.在html页面中导入入口文件
-``html
+```html
 <script type="text/javascript" src="dist/v2015112401/ued.import.js?v=1.0"></script>
-``
+```
 ##### 4.在cross.list.js中配置页面css和js依赖
-``js
+```js
 module.exports = {
     'commonCss.css' : [
         'module/reset.css',
@@ -77,33 +77,33 @@ module.exports = {
         'service/user.js',
     ]
 }
-``
+```
 ##### 5.在html页面中导入依赖
-``html
+```html
     <script type="text/javascript">
         app.importFile("commonCss", "css");
         app.importFile("commonJs", "js");
     </script>
-``
+```
 ##### 6.运行html页面
 
 ### 其他操作
 ##### 初始化package.json
-``shell
+```shell
 $ npm init
-``
+```
 然后按照步骤进行操作
 ##### 开发模式下，开启less代码编译监听
-``shell
+```shell
 $ grunt watch
-``
+```
 ##### 开发模式(dev)/线上模式(online)/线上调试模式切换(onlinedev)
 在/dist/v2014******/ued.import.js文件中修改如下配置，即可马上实现切换
-``js
+```js
 var Config = {
     mode: 'online' // dev/online/onlinedev
 };
-``
+```
 
 # Release History
 * 2015-12-17 v0.1.0 optimize the process of less compilation

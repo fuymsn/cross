@@ -80,10 +80,10 @@ module.exports = {
 ```
 ##### 5.在html页面中导入依赖
 ```html
-    <script type="text/javascript">
-        app.importFile("commonCss", "css");
-        app.importFile("commonJs", "js");
-    </script>
+<script type="text/javascript">
+    app.importFile("commonCss", "css");
+    app.importFile("commonJs", "js");
+</script>
 ```
 ##### 6.运行html页面
 

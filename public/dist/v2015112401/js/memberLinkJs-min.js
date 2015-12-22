@@ -1,1 +1,0 @@
-/*! cross-framework - v0.1.2 - 2015-12-21 */$(function(){var a=new ZeroClipboard(document.getElementById("copyBtn"));a.on("ready",function(b){a.on("aftercopy",function(a){$.tips("复制成功")})})});

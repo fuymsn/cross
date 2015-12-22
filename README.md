@@ -53,8 +53,8 @@ $ npm install
 # 基本操作
 ### 操作步骤
 ##### 1.环境配置
-1. 安装nodejs
-2. 安装npm依赖包
+安装nodejs
+安装npm依赖包
 ##### 2.运行grunt
 ``shell
 $ grunt

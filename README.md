@@ -127,3 +127,4 @@ var Config = {
 * 2014-12-22 v0.3.0
   1. 目录结构更新，分为src开发目录，dev调试目录和dist工程产出目录
   2. cross.import.js，Gruntfile.js配置更新
+* 2014-12-23 v0.3.1 更新测试文件

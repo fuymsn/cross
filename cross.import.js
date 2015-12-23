@@ -239,5 +239,5 @@ var Application = function(config){
 
 }
 
-var app = new Application(window.Config);
+var cross = new Application(window.Config);
 

@@ -45,6 +45,10 @@ A Front-End Framework can be used to common website & mobile
 
 # 环境配置
 * node.js安装, [安装入口](https://nodejs.org/en/)
+* 安装grunt运行环境
+```shell
+$ npm install -g grunt-cli
+```
 * npm依赖包安装，执行
 ```shell
 $ npm install

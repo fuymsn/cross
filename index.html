@@ -1,181 +1,64 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <!-- no cache  -->
-    <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <!-- no cache  -->
-
     <meta name="description" content="">
-
     <meta name="keywords" content="">
     <title>hi</title>
 
     <script type="text/javascript" src="dist/v2015112401/ued.import.js?v=1.0"></script>
     <script type="text/javascript">
-        app.importFile("commonCss", "css");
-        app.importFile("indexCss", "css");
+        cross.importFile("commonCss", "css");
+        cross.importFile("pageaCss", "css");
     </script>
 </head>
 <body id="index">
-    <!-- 页面头部 -->
-    <div class="inx-header">
-        <div class="container" id="headerInner">
-            <a href="/" class="headLogo"></a>
 
-            <ul class="headNav J-tab-menu" id="headNav">
-                <li><a href="/">首页</a><div class="headNavBg"></div></li>
-                <li><a href="/ranking">排行榜</a><div class="headNavBg"></div></li>
-                <li><a href="/viewmore.html?tag=all">美女直播</a><div class="headNavBg"></div></li>
-                <li><a href="/notice.html">活动中心</a><div class="headNavBg"></div></li>
-                <li><a href="/shop">商城</a><div class="headNavBg"></div></li>
-                <li><a href="/noble">贵族</a><div class="headNavBg"></div></li>
-                <li><a href="/business/joining">招募</a><div class="headNavBg"></div></li>
-            </ul>
-            
-            <ul class="headlogin" style="list-style: none;">
-                <li class="head-login-item">
-                    <a href="javascript:void(0)" class="login">
-                        <div class="head-login-icon head-icon-login"></div>
-                        <div class="head-login-title">登录</div>
-                    </a>
-                </li>
-                <li class="head-login-item">
-                    <a href="javascript:void(0)" class="register">
-                        <div class="head-login-icon head-icon-reg"></div>
-                        <div class="head-login-title">注册</div>
-                    </a>
-                </li>
+<h1>CROSS运行环境测试</h1>
+<section class="page">
+    <p id="page-a" class="page-a"></p>
+</section>
+<br>
 
-                <li class="head-login-item">
-                    <a href="javascript:alert('请登录后再进行充值。');">
-                        <div class="head-login-icon head-icon-charge"></div>
-                        <div class="head-login-title">充值</div>
-                    </a>
-                </li>
-                <li class="head-login-item">
-                    <a href="/about/help">
-                        <div class="head-login-icon head-icon-help"></div>
-                        <div class="head-login-title">帮助</div>
-                    </a>
-                </li>
-            </ul>
+<h2>CSS运行测试</h2>
+<section class="module">
+    <h3>module</h3>
+    <p class="module-a">这是module-a</p>
+    <p class="module-b">这是module-b</p>
+    <p class="module-c">这是module-b</p>
+</section>
 
-        </div>
-    </div>
-    <!-- 页面Banner -->
-<div class="inx-wrapper">
-    <div class="inx-section">
+<section class="widget">
+    <h3>widget</h3>
+    <p class="widget-a">这是widget-a</p>
+    <p class="widget-b">这是widget-b</p>
+    <p class="widget-c">这是widget-b</p>
+</section>
+<br>
 
-    <div class="container">
-        <div class="main-left">
+<h2>JAVASCRIPT运行测试</h2>
+<section class="module">
+    <h3>module</h3>
+    <p id="module-a"></p>
+    <p id="module-b"></p>
+    <p id="module-c"></p>
+</section>
 
-            <div class="main-item" >
-                <div class="main-head">
-                    <h2 class="main-title">小编推荐</h2>
-                    <a class="main-sub" href="/viewmore.html?tag=rec">更多直播</a>
-                </div>
-                <div class="main-content clearfix" id="rec"></div>
-            </div>
+<section class="widget">
+    <h3>widget</h3>
+    <p id="widget-a"></p>
+    <p id="widget-b"></p>
+    <p id="widget-c"></p>
+</section>
 
-            <div class="main-item" >
-                <div class="main-head">
-                    <h2 class="main-title">会员专区</h2>
-                    <a class="main-sub" href="/viewmore.html?tag=vip">更多直播</a>
-                </div>
-                <div class="main-content clearfix" id="vip"></div>
-            </div>
-        </div>
-
-        <div class="main-right">
-            <div class="side-search">
-                <input id="searchIpt" type="text" placeholder="主播昵称/主播ID" maxlength="16"/>
-                <a id="searchIptBtn" href="/search"></a>
-            </div>
-
-            <a href="" class="side-hot" target="_blank"></a>
-
-            <div class="side-rank J-tab">
-                <div class="rank-head">
-                    <h2 class="rank-title">排行榜</h2>
-                    <ul class="rank-tab J-tab-menu">
-                        <li class="active">日</li>
-                        <li>周</li>
-                        <li>月</li>
-                        <li class="bn">总</li>
-                    </ul>
-                </div>
-                <div class="rank-content J-tab-main active" id="rank_game_day"></div>
-                <div class="rank-content J-tab-main" id="rank_game_week"></div>
-                <div class="rank-content J-tab-main" id="rank_game_month"></div>
-                <div class="rank-content J-tab-main" id="rank_game_his"></div>
-            </div>
-            
-        </div>
-
-    </div>
-    </div>
-</div>
-
-<!-- 页面底部 -->
-<div class="inx-footer clearfix">
-    <div class="container">
-        <ul class="inx-footer-content clearfix">
-            <li><a href="/about/aboutus">关于我们</a></li>
-            <li><a href="/business/co">代理招募</a></li>
-            <li><a href="/about/help?handle=sug">投诉建议</a></li>
-            <li class="bn"><a href="/about/state">免责条款</a></li>
-        </ul>
-        <div class="inx-footer-suport ">
-            <div class="suport-box">
-                <div class="suport-box-ico ico1"></div>
-                <span class="mt0">经营性网站备案信息</span>
-            </div>
-            <div class="suport-box">
-                <div class="suport-box-ico ico2"></div>
-                <span>不良信息举报中心</span>
-            </div>
-            <div class="suport-box">
-                <div class="suport-box-ico ico3"></div>
-                <span class="mt0">北京互联网举报中心</span>
-            </div>
-            <div class="suport-box">
-                <div class="suport-box-ico ico4"></div>
-                <span>北京网络行业协会</span>
-            </div>
-            <div class="suport-box">
-                <div class="suport-box-ico ico5"></div>
-                <span>网络110报警服务</span>
-            </div>
-            <div class="suport-box">
-                <div class="suport-box-ico ico6"></div>
-                <span>不良视听节目举报</span>
-            </div>
-            <div class="suport-box">
-                <div class="suport-box-ico ico7"></div>
-                <span>中国互联网协会</span>
-            </div>
-            <div class="suport-box">
-                <div class="suport-box-ico ico8"></div>
-                <span class="mt0">北京文化市场举报热线</span>
-            </div>
-            <div class="suport-box nm">
-                <div class="suport-box-ico ico9"></div>
-                <span>首都互联网协会</span>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- 隐藏窗口 -->
+<section class="service">
+    <h3>service</h3>
+    <p id="service-a"></p>
+</section>
 
 <script type="text/javascript">
-    app.libImportJs();
-    app.importFile("commonJs", "js");
-    app.importFile("indexJs", "js");
+    cross.libImportJs();
+    cross.importFile("commonJs", "js");
+    cross.importFile("pageaJs", "js");
 </script>
 
 </body>

@@ -59,7 +59,7 @@ module.exports = function(grunt) {
     var jsConcat = {};
     var jsMinify = {};
     
-    jsConcat[distToPath + 'ued.import.js'] = ['.cross.concat.js', 'cross.conf.js', 'cross.import.js'];
+    jsConcat[distToPath + 'ued.import.js'] = ['.cross.concat.js', 'cross.config.js', 'cross.import.js'];
     jsMinify[distToPath + 'ued.import-min.js'] = distToPath + 'ued.import.js';
     
     for(var i in pageList){
@@ -179,10 +179,11 @@ module.exports = function(grunt) {
             
             //配置文件修改监听
             configFiles: {
-                files: [ 'Gruntfile.js'],
+                files: ["Gruntfile.js", "cross.config.js", "cross.list.js"],
                 options: {
                     reload: true
-                }
+                },
+                tasks: ['dev', 'dist']
             },
             
             //less文件修改监听
@@ -336,7 +337,7 @@ module.exports = function(grunt) {
     //生成css
     grunt.registerTask('dev-css', ['less:dev', 'clean:tmp']);
     //dev
-    grunt.registerTask('dev', ['clean:dev', 'less:dev', 'clean:tmp']);
+    grunt.registerTask('dev', ['clean:dev', 'less:dev']);
     
     
     
@@ -357,7 +358,7 @@ module.exports = function(grunt) {
     grunt.registerTask('dist-cleantmp', ['clean:tmp']);
 
     //online
-    grunt.registerTask('default', ['dist-clean', 'dist-css', 'dist-js', 'dist-img', 'dist-cleantmp']);
+    grunt.registerTask('dist', ['dist-clean', 'dist-css', 'dist-js', 'dist-img', 'dist-cleantmp']);
 
 
 };

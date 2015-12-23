@@ -1,6 +1,6 @@
 window.UED_PUBLISH_VERSION = "v2015112401";
 window.UED_SUB_PUBLISH_VERSION = "1.0";
-window.UED_LIST = {"commonCss.css":["module/reset.css","module/common.less"],"commonJs.js":["widget/jquery.cookie.js","module/dialog.js","module/validation.js","module/utility.js","service/captcha.js","module/user.js","service/user.js","module/dropdown.js","module/common.js"],"indexCss.css":["widget/flexslider.less","module/task.less","page/page-index.less"],"indexJs.js":["module/info-panel.js","module/array.js","module/task.js","module/room-pwd.js","widget/jquery.flexslider.js","page/page-index.js"],"rankCss.css":["page/page-rank.less"],"rankJs.js":["module/info-panel.js","page/page-ranking.js"],"aboutCss.css":["page/page-about.less"],"aboutJs.js":["page/page-about.js"],"agreementJs.js":["page/page-bus-agree.js"],"signupJs.js":["page/page-bus-signup.js"],"anchorCss.css":["widget/uploadify.css","page/page-mem-anchor.less"],"anchorJs.js":["page/page-mem-anchor.js"],"attentionCss.css":["page/page-mem-attention.less"],"attentionJs.js":["module/info-panel.js","page/page-mem-attention.js"],"shopCss.css":["module/noble.less","page/page-mem-shop.less"],"shopJs.js":["module/noble.js","module/shop.js","page/page-mem-shop.js"],"memberIndexCss.css":["page/page-mem-index.less","widget/uploadify.css"],"memberIndexJs.js":["widget/ctry/select.js","widget/uploadify/jquery.uploadify.js","page/page-mem-index.js"],"memberLinkCss.css":["page/page-mem-link.less"],"memberLinkJs.js":["page/page-mem-invite.js"],"memberMsgCss.css":["page/page-mem-msg.less"],"memberMsgJs.js":["page/page-mem-sysmsg.js"],"memberSceneCss.css":["page/page-mem-scene.less"],"busCss.css":["page/page-business.less"],"spaceCss.css":["page/page-space.less"],"chargeCss.css":["page/page-charge.less"],"chargeJs.js":["page/page-charge.js"],"mailCss.css":["page/page-mail.less"],"mailJs.js":["page/page-mail.js"],"roomsetCss.css":["page/page-mem-roomset.less"],"roomsetJs.js":["page/page-mem-roomset.js"],"liveCss.css":["module/noble.less","page/page-live.less"],"liveJs.js":["widget/swfobject.js","module/noble.js","page/page-live.js"],"nobleCss.css":["module/noble.less","page/page-noble.less"],"nobleJs.js":["module/noble.js","page/page-noble.js"]};
+window.UED_LIST = {"commonCss.css":["module/reset.css","module/module-a.less","module/module-b.less","widget/widget-a.less","widget/widget-b.less","module/common.less"],"commonJs.js":["widget/widget-a.js","widget/widget-b.js","module/module-a.js","module/module-b.js","service/service-a.js"],"pageaCss.css":["widget/widget-c.less","module/module-c.less","page/page-a.less"],"pageaJs.js":["module/module-c.js","widget/widget-c.js","page/page-a.js"],"pagebCss.css":["page/page-b.less"],"pagebJs.js":["module/module-c.js","page/page-b.js"],"pagecCss.css":["page/page-c.less"],"pagecJs.js":["module/module-b.js","page/page-c.js"]};
 //cdn 数组
 var cdnPathArr = [
 	'http://s.1.com'
@@ -25,10 +25,9 @@ var Config = {
     resource: window.UED_LIST,
     language: navigator.language || navigator.browserLanguage,
     cdnJquery: false,
-    //cdnPath: '',
-    cdnPath: __cdn, //'http://s.1.co',
+    cdnPath: __cdn,
     imagePath: __cdn + '/src/img',
-    mode: 'online' // dev/online/onlinedev
+    mode: 'dev' // dev/online/onlinedev
 };
 /**
  * 静态文件加载器 - v0.1.2 - 2015-11-25
@@ -271,5 +270,5 @@ var Application = function(config){
 
 }
 
-var app = new Application(window.Config);
+var cross = new Application(window.Config);
 

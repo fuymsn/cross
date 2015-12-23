@@ -27,7 +27,7 @@ var Config = {
     cdnJquery: false,
     cdnPath: __cdn,
     imagePath: __cdn + '/src/img',
-    mode: 'dev' // dev/online/onlinedev
+    mode: 'online' // dev/online/onlinedev
 };
 /**
  * 静态文件加载器 - v0.1.2 - 2015-11-25

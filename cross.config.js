@@ -24,5 +24,5 @@ var Config = {
     cdnJquery: false,
     cdnPath: __cdn,
     imagePath: __cdn + '/src/img',
-    mode: 'dev' // dev/online/onlinedev
+    mode: 'online' // dev/online/onlinedev
 };

@@ -45,7 +45,7 @@ A Front-End Framework can be used to common website & mobile
 
 # 环境配置
 * 安装node.js, [安装入口](https://nodejs.org/en/)
-* 安装grunt运行环境
+* 安装grunt运行环境（需要网络）
 ```shell
 $ npm install -g grunt-cli
 ```
@@ -92,11 +92,6 @@ module.exports = {
 ##### 6.运行html页面
 
 ### 其他操作
-##### 初始化package.json
-```shell
-$ npm init
-```
-然后按照步骤进行操作
 ##### 开发模式下，开启less代码编译监听
 ```shell
 $ grunt watch
@@ -108,6 +103,22 @@ var Config = {
     mode: 'online' // dev/online/onlinedev
 };
 ```
+
+# 配置 Config
+### Grunt配置
+##### Gruntfile.js
+CROSS中Grunt已经完成了大部分配置，开发者如需要添加grunt的其他功能，只需通过npm添加grunt插件，然后在Gruntfile.js中配置即可。[配置直通车](http://gruntjs.com/configuring-tasks)
+##### package.json
+CROSS中的package.json为标准的npm配置，开发者也可通过npm自行配置，例如初始化package.json
+```shell
+$ npm init
+```
+然后根据提示输入相应信息。
+
+### CROSS配置
+##### cross.config.js
+
+##### cross.list.js
 
 # Release History
 * 2015-12-17 v0.1.0 optimize the process of less compilation
@@ -128,3 +139,4 @@ var Config = {
   1. 目录结构更新，分为src开发目录，dev调试目录和dist工程产出目录
   2. cross.import.js，Gruntfile.js配置更新
 * 2014-12-23 v0.3.1 更新测试文件
+* 2014-12-29 v0.3.2 优化发布流程，缩短发布时间，修复dev模式下，import.js中的list没有更新bug

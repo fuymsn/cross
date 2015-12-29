@@ -5,10 +5,10 @@ module.exports = function(grunt) {
     var pkg = grunt.file.readJSON('package.json');
     
     //publish version
-    var publishVersion = pkg.publishVersion;
+    var publishVersion = "v2015112401";
     
     //subject publish version
-    var subPublishVersion = pkg.subPublishVersion;
+    var subPublishVersion = "1.0";
     
     var pageList = require("./cross.list.js"),
 
@@ -56,11 +56,13 @@ module.exports = function(grunt) {
     //console.log(cssCompile);
     
     //js编译列表
+    var jsImportConcat = {};
     var jsConcat = {};
+    var jsImportMinify = {};
     var jsMinify = {};
     
-    jsConcat[distToPath + 'ued.import.js'] = ['.cross.concat.js', 'cross.config.js', 'cross.import.js'];
-    jsMinify[distToPath + 'ued.import-min.js'] = distToPath + 'ued.import.js';
+    jsImportConcat[distToPath + 'cross.js'] = ['.cross.concat.js', 'cross.config.js', 'cross.import.js'];
+    jsImportMinify[distToPath + 'cross-min.js'] = distToPath + 'cross.js';
     
     for(var i in pageList){
         //如果是css，返回
@@ -103,35 +105,6 @@ module.exports = function(grunt) {
     
     //console.log(lessDevCompile);
 
-    //生成cross.concat.js
-    grunt.file.write('.cross.concat.js', 'window.UED_PUBLISH_VERSION = "'+ publishVersion + '";\nwindow.UED_SUB_PUBLISH_VERSION = "'+ subPublishVersion +'";\nwindow.UED_LIST = '+ JSON.stringify(pageList) +';');
-
-    
-    //HTML文件替换任务
-    grunt.log.writeln("Running 'replace HTML files' task");
-
-    var fs = require('fs');
-    //同步的方式读取file文件
-    var filenameArr = fs.readdirSync('../');
-    //静态html文件对象
-    var staticFilePath = {};
-    //create a list of filenameArr
-    for (var i = filenameArr.length - 1; i >= 0; i--) {
-        if (/(?=.+).html/.test(filenameArr[i])) {
-            staticFilePath['../' + filenameArr[i]] = '../' + filenameArr[i];
-        };
-    };
-
-    //替换js/css目录中的url版本号
-    for (var m in staticFilePath){
-        var pageContent = grunt.file.read(m).replace(/v[0-9]{10}/g, publishVersion).replace(/[0-9]+.[0-9]+(?="\>\<\/script\>)/, subPublishVersion);
-        grunt.file.write(staticFilePath[m], pageContent);
-        console.log("'" + m + "' replace successfully");
-    }
-
-    grunt.log.oklns("finish replace HTML.");
-
-
     // 项目配置
     grunt.initConfig({
         //清除dist目录所有文件
@@ -142,9 +115,6 @@ module.exports = function(grunt) {
             },
             dev: {
                 src: [devPath]
-            },
-            tmp: {
-                src: ['.cross.concat.js']
             },
             js: {
                 src: [distToPath + 'js']
@@ -215,6 +185,9 @@ module.exports = function(grunt) {
         //合并js
         concat:{
             import: {
+                files: jsImportConcat
+            },
+            js: {
                 files: jsConcat
             }
         },
@@ -228,7 +201,9 @@ module.exports = function(grunt) {
                     drop_console: true
                 }
             },
-            
+            import: {
+                files: jsImportMinify  
+            },
             //页面文件压缩
             dist: {
                 files: jsMinify
@@ -329,36 +304,93 @@ module.exports = function(grunt) {
 
     // 加载所有依赖插件
     require('load-grunt-tasks')(grunt, { scope: 'dependencies'});
+    
+    //替换html文件中的version版本号
+    grunt.registerTask('replace-html', 'HTML version code replace.', function(){
+        //HTML文件替换任务
+        grunt.log.writeln("Running 'replace HTML files' task");
+
+        var fs = require('fs');
+        //同步的方式读取file文件
+        var filenameArr = fs.readdirSync('../');
+        //静态html文件对象
+        var staticFilePath = {};
+        //create a list of filenameArr
+        for (var i = filenameArr.length - 1; i >= 0; i--) {
+            if (/(?=.+).html/.test(filenameArr[i])) {
+                staticFilePath['../' + filenameArr[i]] = '../' + filenameArr[i];
+            };
+        };
+
+        //替换js/css目录中的url版本号
+        for (var m in staticFilePath){
+            var pageContent = grunt.file.read(m).replace(/v[0-9]{10}/g, publishVersion).replace(/[0-9]+.[0-9]+(?="\>\<\/script\>)/, subPublishVersion);
+            grunt.file.write(staticFilePath[m], pageContent);
+            console.log("'" + m + "' replace successfully");
+        }
+
+        grunt.log.oklns("finish replace HTML.");
+    });
 
     // 默认任务
     grunt.registerTask('css-lint', ['csslint']);
     
-    //注册开发模式
+    //注册开发模式任务
     //生成css
-    grunt.registerTask('dev-css', ['less:dev', 'clean:tmp']);
+    grunt.registerTask('dev-css', ['generate-concat', 'concat:import', 'uglify:import', 'less:dev', 'delete-concat']);
     //dev
-    grunt.registerTask('dev', ['clean:dev', 'less:dev']);
+    grunt.registerTask('dev', ['clean:dev', 'dev-css']);
     
-    
-    
-    //注册线上模式
+    //注册线上模式任务
     //清除dist目录
     grunt.registerTask('dist-clean', ['clean:dist']);
     
     //生成css
-    grunt.registerTask('dist-css', ['clean:css', 'less:dist', 'csscomb', 'cssmin']);
+    grunt.registerTask('dist-css', ['clean:css', 'generate-concat', 'concat:import', 'uglify:import', 'less:dist', 'csscomb', 'cssmin', 'delete-concat']);
     
     //生成js
-    grunt.registerTask('dist-js', ['clean:js', 'concat:import', 'uglify']);
+    grunt.registerTask('dist-js', ['clean:js', 'generate-concat', 'concat', 'uglify', 'delete-concat']);
     
     //压缩图片
     grunt.registerTask('dist-img', ['clean:img', 'copy:img', 'imagemin']);
     
-    //清除残留文件
-    grunt.registerTask('dist-cleantmp', ['clean:tmp']);
-
+    //build 任务配置
+    grunt.registerTask('build', ['less:dist', 'csscomb', 'cssmin', 'concat', 'uglify', 'copy:img', 'imagemin']);
+    
+    //生成cross.concat.js
+    grunt.registerTask('generate-concat', function(){
+        grunt.log.writeln('Processing concat task...');
+        grunt.file.write('.cross.concat.js', 'window.UED_PUBLISH_VERSION = "'+ publishVersion + '";\nwindow.UED_SUB_PUBLISH_VERSION = "'+ subPublishVersion +'";\nwindow.UED_LIST = '+ JSON.stringify(pageList) +';');
+        grunt.log.oklns('.cross.concat.js has generated.');
+    });
+    
+    //删除cross.concat.js
+    grunt.registerTask('delete-concat', function(){
+        grunt.log.writeln('Processing delete concat task...');
+        grunt.file.delete('.cross.concat.js');
+        grunt.log.oklns('.cross.concat.js has deleted.');
+    });
+    
+    
     //online
-    grunt.registerTask('dist', ['dist-clean', 'dist-css', 'dist-js', 'dist-img', 'dist-cleantmp']);
-
+    grunt.registerTask('dist', 'CROSS dist task', function(){
+        
+        grunt.log.writeln('Processing dist concat task...');
+        
+        //生成cross.concat.js
+        grunt.task.run('generate-concat');
+        
+        //文件清理，执行build，清除缓存文件
+        grunt.task.run(['replace-html', 'dist-clean', 'build']);
+        
+        //删除cross.concat.js
+        grunt.task.run('delete-concat');
+        
+    });
+    
+    //default
+    grunt.registerTask('default', function(){
+        grunt.task.run(['dist']);
+    });
 
 };

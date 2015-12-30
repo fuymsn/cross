@@ -3,12 +3,13 @@ module.exports = function(grunt) {
     
     //package config
     var pkg = grunt.file.readJSON('package.json');
+    var config = getConfig();
     
     //publish version
-    var publishVersion = "v2015112401";
+    var publishVersion = config.publishVersion;
     
     //subject publish version
-    var subPublishVersion = "1.0";
+    var subPublishVersion = config.subPublishVersion;
     
     var pageList = require("./cross.list.js"),
 
@@ -61,7 +62,7 @@ module.exports = function(grunt) {
     var jsImportMinify = {};
     var jsMinify = {};
     
-    jsImportConcat[distToPath + 'cross.js'] = ['.cross.concat.js', 'cross.config.js', 'cross.import.js'];
+    jsImportConcat[distToPath + 'cross.js'] = ['cross.list.js', 'cross.config.js', 'cross.import.js'];
     jsImportMinify[distToPath + 'cross-min.js'] = distToPath + 'cross.js';
     
     for(var i in pageList){
@@ -104,7 +105,14 @@ module.exports = function(grunt) {
     }
     
     //console.log(lessDevCompile);
-
+    
+    //从cross.config.js获取配置信息
+    function getConfig(){
+        var configContent = grunt.file.read("cross.config.js");
+        eval(configContent);
+        return Config;
+    };
+    
     // 项目配置
     grunt.initConfig({
         //清除dist目录所有文件
@@ -331,13 +339,13 @@ module.exports = function(grunt) {
 
         grunt.log.oklns("finish replace HTML.");
     });
-
+    
     // 默认任务
     grunt.registerTask('css-lint', ['csslint']);
     
     //注册开发模式任务
     //生成css
-    grunt.registerTask('dev-css', ['generate-concat', 'concat:import', 'uglify:import', 'less:dev', 'delete-concat']);
+    grunt.registerTask('dev-css', ['concat:import', 'uglify:import', 'less:dev']);
     //dev
     grunt.registerTask('dev', ['clean:dev', 'dev-css']);
     
@@ -346,45 +354,24 @@ module.exports = function(grunt) {
     grunt.registerTask('dist-clean', ['clean:dist']);
     
     //生成css
-    grunt.registerTask('dist-css', ['clean:css', 'generate-concat', 'concat:import', 'uglify:import', 'less:dist', 'csscomb', 'cssmin', 'delete-concat']);
+    grunt.registerTask('dist-css', ['clean:css', 'concat:import', 'uglify:import', 'less:dist', 'csscomb', 'cssmin']);
     
     //生成js
-    grunt.registerTask('dist-js', ['clean:js', 'generate-concat', 'concat', 'uglify', 'delete-concat']);
+    grunt.registerTask('dist-js', ['clean:js', 'concat', 'uglify']);
     
     //压缩图片
     grunt.registerTask('dist-img', ['clean:img', 'copy:img', 'imagemin']);
     
     //build 任务配置
     grunt.registerTask('build', ['less:dist', 'csscomb', 'cssmin', 'concat', 'uglify', 'copy:img', 'imagemin']);
-    
-    //生成cross.concat.js
-    grunt.registerTask('generate-concat', function(){
-        grunt.log.writeln('Processing concat task...');
-        grunt.file.write('.cross.concat.js', 'window.UED_PUBLISH_VERSION = "'+ publishVersion + '";\nwindow.UED_SUB_PUBLISH_VERSION = "'+ subPublishVersion +'";\nwindow.UED_LIST = '+ JSON.stringify(pageList) +';');
-        grunt.log.oklns('.cross.concat.js has generated.');
-    });
-    
-    //删除cross.concat.js
-    grunt.registerTask('delete-concat', function(){
-        grunt.log.writeln('Processing delete concat task...');
-        grunt.file.delete('.cross.concat.js');
-        grunt.log.oklns('.cross.concat.js has deleted.');
-    });
-    
-    
+
     //online
     grunt.registerTask('dist', 'CROSS dist task', function(){
         
         grunt.log.writeln('Processing dist concat task...');
         
-        //生成cross.concat.js
-        grunt.task.run('generate-concat');
-        
         //文件清理，执行build，清除缓存文件
         grunt.task.run(['replace-html', 'dist-clean', 'build']);
-        
-        //删除cross.concat.js
-        grunt.task.run('delete-concat');
         
     });
     

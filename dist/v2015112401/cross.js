@@ -1,6 +1,69 @@
-window.UED_PUBLISH_VERSION = "v2015112401";
-window.UED_SUB_PUBLISH_VERSION = "1.0";
-window.UED_LIST = {"commonCss.css":["module/reset.css","module/module-a.less","module/module-b.less","widget/widget-a.less","widget/widget-b.less","module/common.less"],"commonJs.js":["widget/widget-a.js","widget/widget-b.js","module/module-a.js","module/module-b.js","service/service-a.js"],"pageaCss.css":["widget/widget-c.less","module/module-c.less","page/page-a.less"],"pageaJs.js":["module/module-c.js","widget/widget-c.js","page/page-a.js"],"pagebCss.css":["page/page-b.less"],"pagebJs.js":["module/module-c.js","page/page-b.js"],"pagecCss.css":["page/page-c.less"],"pagecJs.js":["module/module-b.js","page/page-c.js"]};
+// 页面模块
+(function (name, factory) {
+
+    if (typeof module === "object" && module.exports) {
+
+        // Node, CommonJS-like
+        module.exports = factory();
+
+    } else {
+
+        // Browser globals (this is window)
+        this[name] = factory();
+
+    }
+
+}("listConfig", function () {
+
+    return {
+        'commonCss.css' : [
+            'module/reset.css',
+            'module/module-a.less',
+            'module/module-b.less',
+            'widget/widget-a.less',
+            'widget/widget-b.less',
+            'module/common.less'
+        ],
+        'commonJs.js' : [
+            'widget/widget-a.js',
+            'widget/widget-b.js',
+            'module/module-a.js',
+            'module/module-b.js',
+            'service/service-a.js'
+        ],
+        //page a
+        'pageaCss.css' : [
+            'widget/widget-c.less',
+            'module/module-c.less',
+            'page/page-a.less'
+        ],
+        'pageaJs.js' : [
+            'module/module-c.js',
+            'widget/widget-c.js',
+            'page/page-a.js'
+        ],
+        
+        //page b
+        'pagebCss.css' : [
+            'page/page-b.less'
+        ],
+        'pagebJs.js' : [
+            'module/module-c.js',
+            'page/page-b.js'
+        ],
+        
+        //page c
+        'pagecCss.css' : [
+            'page/page-c.less'
+        ],
+
+        'pagecJs.js' : [
+            'module/module-b.js',
+            'page/page-c.js'
+        ]
+    };
+
+}));
 //cdn 数组
 var cdnPathArr = [
 	'http://s.1.com'
@@ -19,11 +82,15 @@ var __randomSeedFromArr = function(arr){
 
 //优化目的将ued_config 改为了 Config
 var __cdn = __randomSeedFromArr(cdnPathArr);
+
+//检测是否有导入cross.list.js
+var __crossList = typeof listConfig == "undefined" ? {} : listConfig;
+
 var Config = {
-    publishVersion: window.UED_PUBLISH_VERSION || "",
-    subPublishVersion: window.UED_SUB_PUBLISH_VERSION || "",
-    resource: window.UED_LIST,
-    language: navigator.language || navigator.browserLanguage,
+    publishVersion: "v2015112401",
+    subPublishVersion: "1.0",
+    resource: __crossList,
+    //language: navigator.language || navigator.browserLanguage,
     cdnJquery: false,
     cdnPath: __cdn,
     imagePath: __cdn + '/src/img',

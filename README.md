@@ -117,14 +117,44 @@ $ npm init
 
 ### CROSS配置
 ##### cross.config.js
+cross的配置在cross.config.js文件中配置
+* publishVersion
+发布版本号，可自定义
+* subPublishVersion
+发布子版本号，可自定义
+* resource 
+由corss自动生成
+* cdnJquery
+jq库是否单独使用CDN
+* cdnPath
+用于配置cdn列表，如果配置两个以上的cdn，每次刷新页面cdn会随机选择和跳转
+* imagePath
+用于配置图片cdn，可自定义
+* mode
+JavaScript运行模式。分别为dev（开发）, onlinedev（线上调试）, online（生产）模式
 
 ##### cross.list.js
+所有页面依赖配置都在cross.list.js中配置，配置的格式以key value的形式表现。例如配置page-a：
+```js
+{
+    'pageaJs.js' : [
+        'module/module-b.js',
+        'page/page-a.js'
+    ]
+}
+```
+然后在页面中引用pageaJs.js即可
+```html
+<script type="text/javascript">
+    cross.importFile("pageaJs", "js");
+</script>
+```
 
 # Release History
-* 2015-12-17 v0.1.0 optimize the process of less compilation
-* 2015-12-18 v0.1.1 update grunt with csscomb
-* 2015-12-19 v0.1.2 update grunt js's process of concat & uglify
-* 2015-12-19 v0.1.3 put a unified config into package.json
+* 2015-12-17 v0.1.0 初始版本发布，优化less发布流程 optimize the process of less compilation
+* 2015-12-18 v0.1.1 更新grunt csscomb配置 update grunt with csscomb
+* 2015-12-19 v0.1.2 优化js拼接和压缩过程 update grunt js's process of concat & uglify
+* 2015-12-19 v0.1.3 优化package.json配置 put a unified config into package.json
 * 2015-12-21 v0.2.0 
   1. 新增dev开发调试模式
   2. 新增onlinedev线上调试模式
@@ -135,8 +165,11 @@ $ npm init
   1. 图片资源整合，可在grunt:less中配置图片资源路径
   2. 简化图片配置和发布流程
   3. 可对背景图片进行压缩
-* 2014-12-22 v0.3.0
+* 2015-12-22 v0.3.0
   1. 目录结构更新，分为src开发目录，dev调试目录和dist工程产出目录
   2. cross.import.js，Gruntfile.js配置更新
-* 2014-12-23 v0.3.1 更新测试文件
-* 2014-12-29 v0.3.2 优化发布流程，缩短发布时间，修复dev模式下，import.js中的list没有更新bug
+* 2015-12-23 v0.3.1 更新测试文件
+* 2015-12-29 v0.3.2 优化发布流程，缩短发布时间，修复dev模式下，import.js中的list没有更新bug
+* 2015-12-30 v0.3.3
+  1. 重新设计配置文件，CROSS配置信息统一从cross.config.js读取
+  2. 移除.cross.concat.js文件生成和删除任务

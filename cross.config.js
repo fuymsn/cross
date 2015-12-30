@@ -16,11 +16,15 @@ var __randomSeedFromArr = function(arr){
 
 //优化目的将ued_config 改为了 Config
 var __cdn = __randomSeedFromArr(cdnPathArr);
+
+//检测是否有导入cross.list.js
+var __crossList = typeof listConfig == "undefined" ? {} : listConfig;
+
 var Config = {
-    publishVersion: window.UED_PUBLISH_VERSION || "",
-    subPublishVersion: window.UED_SUB_PUBLISH_VERSION || "",
-    resource: window.UED_LIST,
-    language: navigator.language || navigator.browserLanguage,
+    publishVersion: "v2015112401",
+    subPublishVersion: "1.0",
+    resource: __crossList,
+    //language: navigator.language || navigator.browserLanguage,
     cdnJquery: false,
     cdnPath: __cdn,
     imagePath: __cdn + '/src/img',

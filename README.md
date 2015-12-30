@@ -119,19 +119,19 @@ $ npm init
 ##### cross.config.js
 cross的配置在cross.config.js文件中配置
 * publishVersion
-发布版本号，可自定义
+<br/>发布版本号，可自定义 
 * subPublishVersion
-发布子版本号，可自定义
+<br/>发布子版本号，可自定义
 * resource 
-由corss自动生成
+<br/>由corss自动生成
 * cdnJquery
-jq库是否单独使用CDN
+<br/>jq库是否单独使用CDN
 * cdnPath
-用于配置cdn列表，如果配置两个以上的cdn，每次刷新页面cdn会随机选择和跳转
+<br/>用于配置cdn列表，如果配置两个以上的cdn，每次刷新页面cdn会随机选择和跳转
 * imagePath
-用于配置图片cdn，可自定义
+<br/>用于配置图片cdn，可自定义
 * mode
-JavaScript运行模式。分别为dev（开发）, onlinedev（线上调试）, online（生产）模式
+<br/>JavaScript运行模式。分别为dev（开发）, onlinedev（线上调试）, online（生产）模式
 
 ##### cross.list.js
 所有页面依赖配置都在cross.list.js中配置，配置的格式以key value的形式表现。例如配置page-a：

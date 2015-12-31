@@ -21,12 +21,13 @@ module.exports = function(grunt) {
         //serivce path => src/service/user.js @example /回到src的父级
         serviceJsPath = basePath,
         
-        //dist path
-        distPath = 'dist/',
-        distToPath = distPath + publishVersion + '/',
+        //dest path
+        destPath = 'dest/',
+        destToPath = destPath + publishVersion + '/',
         
         //dev path
-        devPath = 'dev/';
+        devPath = 'dev/',
+        devCssPath = devPath + "css/";
 
     //判断是否从service文件夹导入
     var isServiceFile = function(str){
@@ -42,15 +43,15 @@ module.exports = function(grunt) {
         if(i.indexOf(".js") > -1){ continue; }
         
         var arrCssItem = [];
-        var cssDistPath = distToPath + "css/" + i;
-        var cssDistMinPath = distToPath + "css/" + i.replace(".css", "-min.css");
+        var cssDestPath = destToPath + "css/" + i;
+        var cssDestMinPath = destToPath + "css/" + i.replace(".css", "-min.css");
         
         for(var j = 0; j < pageList[i].length; j++){
             arrCssItem[j] = baseCssPath + pageList[i][j];
         }
         
-        lessCompile[cssDistPath] = arrCssItem;
-        cssCompile[cssDistMinPath] = cssDistPath;
+        lessCompile[cssDestPath] = arrCssItem;
+        cssCompile[cssDestMinPath] = cssDestPath;
     }
     
     //console.log(lessCompile);
@@ -62,8 +63,8 @@ module.exports = function(grunt) {
     var jsImportMinify = {};
     var jsMinify = {};
     
-    jsImportConcat[distToPath + 'cross.js'] = ['cross.list.js', 'cross.config.js', 'cross.import.js'];
-    jsImportMinify[distToPath + 'cross-min.js'] = distToPath + 'cross.js';
+    jsImportConcat[destToPath + 'cross.js'] = ['cross.list.js', 'cross.config.js', 'cross.import.js'];
+    jsImportMinify[destToPath + 'cross-min.js'] = destToPath + 'cross.js';
     
     for(var i in pageList){
         //如果是css，返回
@@ -71,8 +72,8 @@ module.exports = function(grunt) {
         
         //js处理
         var arrJsItem = [];
-        var jsDistPath = distToPath + "js/" + i;
-        var jsDistMinPath = distToPath + "js/" + i.replace(".js", "-min.js");
+        var jsDestPath = destToPath + "js/" + i;
+        var jsDestMinPath = destToPath + "js/" + i.replace(".js", "-min.js");
         
         for(var j = 0; j < pageList[i].length; j++){
             
@@ -84,8 +85,8 @@ module.exports = function(grunt) {
             
         }
         
-        jsConcat[jsDistPath] = arrJsItem;
-        jsMinify[jsDistMinPath] = jsDistPath;
+        jsConcat[jsDestPath] = arrJsItem;
+        jsMinify[jsDestMinPath] = jsDestPath;
     }
     
     //console.log(jsConcat);
@@ -99,7 +100,7 @@ module.exports = function(grunt) {
         if(i.indexOf(".js") > -1){ continue; }
         
         for(var j = 0; j < pageList[i].length; j++){
-            lessDevCompile[devPath + "css/" + pageList[i][j].replace(".less", ".css")] = baseCssPath + pageList[i][j];
+            lessDevCompile[devCssPath + pageList[i][j].replace(".less", ".css")] = baseCssPath + pageList[i][j];
         }
         
     }
@@ -122,60 +123,51 @@ module.exports = function(grunt) {
     
     // 项目配置
     grunt.initConfig({
-        //清除dist目录所有文件
+        //清除dest目录所有文件
         pkg: pkg,
         clean: {
-            dist: {
-                src: [distPath]
+            dest: {
+                src: [destPath]
             },
             dev: {
                 src: [devPath]
             },
             js: {
-                src: [distToPath + 'js']
+                src: [destToPath + 'js']
             },
             css: {
-                src: [distToPath + 'css']
+                src: [destToPath + 'css']
             },
             img: {
-                src: [distToPath + 'img']
+                src: [destToPath + 'img']
             }
         },
 
-        //将css背景图片资源复制到dist中
+        //将css背景图片资源复制到dest中
         copy: {
             img: {
                 expand: true,
                 cwd: basePath + 'img',
                 src: '**',
-                dest: distToPath + 'img'
+                dest: destToPath + 'img'
             }
         },
 
         qunit: {
             files: ['test/**/*.html']
         },
-
-        watch: {
+        
+        //css检查
+        csslint: {
             options: {
-                //spawn 设置为false 编译速度更快
-                spawn: false,
+                //csslintrc: 'style/.csslintrc'
+                "qualified-headings": true,
+                "unique-headings": false,
+                "known-properties": false
             },
-            
-            //配置文件修改监听
-            configFiles: {
-                files: ["Gruntfile.js", "cross.config.js", "cross.list.js"],
-                options: {
-                    reload: true
-                },
-                tasks: ['dev', 'dist']
-            },
-            
-            //less文件修改监听
-            less: {
-                files: [ basePath + '**/*.less', basePath + '**/*.css'],
-                tasks: ['less:dev']
-            },
+            test:{
+                src: [ devCssPath + '**/*.css']
+            }
         },
 
         jshint: {
@@ -190,13 +182,50 @@ module.exports = function(grunt) {
                 undef: true,
                 boss: true,
                 eqnull: true,
-                browser: true
+                browser: true,
+                globals: {
+                    jQuery: true
+                }
             },
-            globals: {
-                jQuery: true
+            test: {
+                src: [ baseJsPath + "**/*.js", "!" + baseJsPath + "core/*"]
             }
         },
         
+        watch: {
+            options: {
+                //spawn 设置为false 编译速度更快
+                spawn: false,
+            },
+            
+            //配置文件修改监听
+            configFiles: {
+                files: ["Gruntfile.js", "cross.config.js", "cross.list.js", "cross.import.js"],
+                options: {
+                    reload: true
+                },
+                tasks: ['dest-import']
+            },
+            
+            //less文件修改监听
+            less: {
+                files: [ basePath + '**/*.less', basePath + '**/*.css'],
+                tasks: ['less:dev']
+            },
+            
+            //css语法检查
+            css: {
+                files: '<%= csslint.test.src %>',
+                tasks: [ "csslint" ]
+            },
+            
+            //js语法检查
+            js: {
+                files: "<%= jshint.test.src %>",
+                tasks: [ "jshint"]
+            }
+        },
+
         //合并js
         concat:{
             import: {
@@ -220,19 +249,10 @@ module.exports = function(grunt) {
                 files: jsImportMinify  
             },
             //页面文件压缩
-            dist: {
+            dest: {
                 files: jsMinify
             }
         },
-        
-        //css检查
-        csslint: {
-            options: {
-                csslintrc: 'style/.csslintrc'
-            },
-            src: 'style/*.css'
-        },
-        
         
         //less
         less:{
@@ -254,7 +274,7 @@ module.exports = function(grunt) {
             
             //线上发布
             
-            dist:{
+            dest:{
                 options: {
                     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
                     //压缩
@@ -282,7 +302,7 @@ module.exports = function(grunt) {
         
         //梳理css
         csscomb: {
-            dist: {
+            dest: {
                 options: {
                     //config: 'style/.csscomb.json'
                 },
@@ -291,7 +311,7 @@ module.exports = function(grunt) {
         },
         
         cssmin: {
-            dist: {
+            dest: {
                 options: {
                     
                 },
@@ -302,15 +322,15 @@ module.exports = function(grunt) {
 
         //image min
         imagemin: {
-            dist: {
+            dest: {
                 options: {
                     optimizationLevel: 3 //定义图片优化水平
                 },
                 files: [{
                     expand: true, 
-                    cwd: distToPath + 'img/',
+                    cwd: destToPath + 'img/',
                     src: ['**/*.{png,jpg,jpeg}'], // 优化 cwd路径目录下所有 png/jpg/jpeg 图片
-                    dest: distToPath + 'img/'
+                    dest: destToPath + 'img/'
                 }]
             }
         }
@@ -347,44 +367,43 @@ module.exports = function(grunt) {
         grunt.log.oklns("finish replace HTML.");
     });
     
-    // 默认任务
-    grunt.registerTask('css-lint', ['csslint']);
-    
+    //dest import
+    grunt.registerTask('dest-import', ['concat:import', 'uglify:import']);
     //注册开发模式任务
     //生成css
-    grunt.registerTask('dev-css', ['concat:import', 'uglify:import', 'less:dev']);
+    grunt.registerTask('dev-css', ['dest-import', 'less:dev']);
     //dev
     grunt.registerTask('dev', ['clean:dev', 'dev-css']);
     
     //注册线上模式任务
-    //清除dist目录
-    grunt.registerTask('dist-clean', ['clean:dist']);
+    //清除dest目录
+    grunt.registerTask('dest-clean', ['clean:dest']);
     
     //生成css
-    grunt.registerTask('dist-css', ['clean:css', 'concat:import', 'uglify:import', 'less:dist', 'csscomb', 'cssmin']);
+    grunt.registerTask('dest-css', ['clean:css', 'dest-import', 'less:dest', 'csscomb', 'cssmin']);
     
     //生成js
-    grunt.registerTask('dist-js', ['clean:js', 'concat', 'uglify']);
+    grunt.registerTask('dest-js', ['clean:js', 'concat', 'uglify']);
     
     //压缩图片
-    grunt.registerTask('dist-img', ['clean:img', 'copy:img', 'imagemin']);
+    grunt.registerTask('dest-img', ['clean:img', 'copy:img', 'imagemin']);
     
     //build 任务配置
-    grunt.registerTask('build', ['less:dist', 'csscomb', 'cssmin', 'concat', 'uglify', 'copy:img', 'imagemin']);
+    grunt.registerTask('build', ['less:dest', 'csscomb', 'cssmin', 'concat', 'uglify', 'copy:img', 'imagemin']);
 
     //online
-    grunt.registerTask('dist', 'CROSS dist task', function(){
+    grunt.registerTask('dest', 'CROSS dest task', function(){
         
-        grunt.log.writeln('Processing dist concat task...');
+        grunt.log.writeln('Processing dest concat task...');
         
         //文件清理，执行build，清除缓存文件
-        grunt.task.run(['replace-html', 'dist-clean', 'build']);
+        grunt.task.run(['replace-html', 'dest-clean', 'build']);
         
     });
     
     //default
     grunt.registerTask('default', function(){
-        grunt.task.run(['dist']);
+        grunt.task.run(['dest']);
     });
 
 };

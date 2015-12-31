@@ -1,20 +1,20 @@
 {
-  "name": "cross-framework",
+  "name": "cross",
   "version": "0.1.2",
-  "description": "A Front-End Framework can be used to common website & mobile",
+  "description": "A Front-End Env can be used to common website & mobile",
   "repository": {
     "type": "git",
-    "url": "git+https://fuymsn@github.com/fuymsn/cross-framework.git"
+    "url": "git+https://fuymsn@github.com/fuymsn/cross.git"
   },
   "keywords": [
-    "cross-framework"
+    "cross"
   ],
   "author": "Young Foo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fuymsn/cross-framework/issues"
+    "url": "https://github.com/fuymsn/cross/issues"
   },
-  "homepage": "https://github.com/fuymsn/cross-framework#readme",
+  "homepage": "https://github.com/fuymsn/cross#readme",
   "engines": {
     "node": ">= 0.6.0"
   },

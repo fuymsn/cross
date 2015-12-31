@@ -21,8 +21,8 @@ var Application = function(config){
     //service path
     this.servicePath = "../";
 
-    //dist path
-    this.distPath = "";
+    //dest path
+    this.destPath = "";
 
     /**
      * 装载配置文件
@@ -44,7 +44,7 @@ var Application = function(config){
     this.initImport = function(){
 
         this.cdnPath = this.config.cdnPath || "";
-        this.distPath = this.config.cdnPath + "/dist/"+ this.config.publishVersion;
+        this.destPath = this.config.cdnPath + "/dest/"+ this.config.publishVersion;
 
         /**
          * 根据是否是开发版修改cdn路径和判断加载less编译文件
@@ -71,32 +71,32 @@ var Application = function(config){
     }
 
     /**
-     * [__importDist 导入压缩文件]
+     * [__importdest 导入压缩文件]
      * @param  {[type]} file     [文件]
      * @param  {[type]} fileType [文件类型]
      * @param  {[type]} id       [文件id]
      * @return {[type]}          [null]
      */
-    var __importDist = function(file, fileType, ins, isHead){
+    var __importDest = function(file, fileType, ins, isHead){
 
         var outStr = '';
-        var fileDist = '';
+        var fileDest = '';
         
         if(ins.config.mode == "onlinedev"){
-            fileDist = file;
+            fileDest = file;
         }
         
         if(ins.config.mode == "online"){
-            fileDist = file.split(".")[0] + "-min." + fileType;
+            fileDest = file.split(".")[0] + "-min." + fileType;
         }
         
         if (fileType == "js") {
             
-            outStr = __jsTemplate.replace("${src}", ins.distPath + "/js/" + fileDist + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
+            outStr = __jsTemplate.replace("${src}", ins.destPath + "/js/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         } else if (fileType == "css") {
 
-            outStr = __cssTemplate.replace("${href}", ins.distPath + "/css/" + fileDist + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
+            outStr = __cssTemplate.replace("${href}", ins.destPath + "/css/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         }
 
@@ -108,7 +108,7 @@ var Application = function(config){
     }
 
     /**
-     * [__importDist 导入debug文件]
+     * [__importDest 导入debug文件]
      * @param  {[type]} files    [文件数组]
      * @param  {[type]} fileType [文件类型]
      * @param  {[type]} id       [文件id]
@@ -169,7 +169,7 @@ var Application = function(config){
         if (__mode == "online" || __mode == "onlinedev") {
 
             //线上模式导入
-            __importDist(__id, fileType, this, isHead);
+            __importDest(__id, fileType, this, isHead);
 
         } else if (__mode == "dev") {
 

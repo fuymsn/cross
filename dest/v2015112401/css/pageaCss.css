@@ -1,0 +1,20 @@
+.widget .widget-c {
+  color: darkred;
+}
+
+.module .module-c {
+  color: royalblue;
+}
+
+/*
+ * variable less file, this file is module for button
+ * Author: Young
+ * important module for the project, if u would like to modify the file, pls contact Young
+ * mail: young@kingjoy.co
+ */
+body {
+  padding: 20px;
+}
+.page .page-a {
+  color: green;
+}

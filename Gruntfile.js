@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     //subject publish version
     var subPublishVersion = config.subPublishVersion;
     
-    var pageList = require("./cross.list.js"),
+    var pageList = getListConfig(),
 
         //base path
         basePath = "src/",
@@ -111,6 +111,13 @@ module.exports = function(grunt) {
         var configContent = grunt.file.read("cross.config.js");
         eval(configContent);
         return Config;
+    };
+    
+    //从cross.list.js获取配置信息
+    function getListConfig(){
+        var listContent = grunt.file.read("cross.list.js");
+        eval(listContent);
+        return crossList;
     };
     
     // 项目配置

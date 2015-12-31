@@ -173,3 +173,4 @@ cross的配置在cross.config.js文件中配置
 * 2015-12-30 v0.3.3
   1. 重新设计配置文件，CROSS配置信息统一从cross.config.js读取
   2. 移除.cross.concat.js文件生成和删除任务
+* 2015-12-31 v0.3.4 优化cross.list.js列表

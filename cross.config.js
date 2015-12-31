@@ -17,13 +17,10 @@ var __randomSeedFromArr = function(arr){
 //优化目的将ued_config 改为了 Config
 var __cdn = __randomSeedFromArr(cdnPathArr);
 
-//检测是否有导入cross.list.js
-var __crossList = typeof listConfig == "undefined" ? {} : listConfig;
-
 var Config = {
     publishVersion: "v2015112401",
     subPublishVersion: "1.0",
-    resource: __crossList,
+    resource: typeof crossList == "undefined" ? {}: crossList,
     //language: navigator.language || navigator.browserLanguage,
     cdnJquery: false,
     cdnPath: __cdn,

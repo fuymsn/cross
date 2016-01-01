@@ -1,0 +1,17 @@
+/*! cross 2016-01-01 */
+/*
+ * common less file, this file is module for button
+ * Author: Young
+ * important module for the project, if u would like to modify the file, pls contact Young
+ * mail: young@kingjoy.co
+ */
+.module .module-a {
+  color: royalblue;
+}
+.module .module-b {
+  color: royalblue;
+}
+/*选项卡*/
+.module .module-common {
+  background-image: url("../../../src/img/common.png");
+}

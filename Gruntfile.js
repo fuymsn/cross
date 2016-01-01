@@ -29,72 +29,64 @@ module.exports = function(grunt) {
     //less 编译数组列表
     var lessCompile = {};
     var cssCompile = {};
-    
-    for (var i in pageList){
-        
-        if(i.indexOf(".js") > -1){ continue; }
-        
-        var arrCssItem = [];
-        var cssDestPath = destToPath + "css/" + i;
-        var cssDestMinPath = destToPath + "css/" + i.replace(".css", "-min.css");
-        
-        for(var j = 0; j < pageList[i].length; j++){
-            arrCssItem[j] = basePath + pageList[i][j];
-        }
-        
-        lessCompile[cssDestPath] = arrCssItem;
-        cssCompile[cssDestMinPath] = cssDestPath;
-    }
-    
-    //console.log(lessCompile);
-    //console.log(cssCompile);
-    
-    //js编译列表
-    var jsImportConcat = {};
-    var jsConcat = {};
-    var jsImportMinify = {};
-    var jsMinify = {};
-    
-    jsImportConcat[destToPath + 'cross.js'] = ['cross.list.js', 'cross.config.js', 'cross.import.js'];
-    jsImportMinify[destToPath + 'cross-min.js'] = destToPath + 'cross.js';
-    
-    for(var i in pageList){
-        //如果是css，返回
-        if(i.indexOf(".css") > -1){ continue; }
-        
-        //js处理
-        var arrJsItem = [];
-        var jsDestPath = destToPath + "js/" + i;
-        var jsDestMinPath = destToPath + "js/" + i.replace(".js", "-min.js");
-        
-        for(var j = 0; j < pageList[i].length; j++){
 
-            arrJsItem[j] = basePath + pageList[i][j];
-            
-        }
-        
-        jsConcat[jsDestPath] = arrJsItem;
-        jsMinify[jsDestMinPath] = jsDestPath;
-    }
+    //js编译列表
     
-    //console.log(jsConcat);
-    //console.log(jsMinify);
+    var jsConcat = {};
+    
+    var jsMinify = {};
     
     //开发模式编译数组列表
     var lessDevCompile = {};
     
-    for(var i in pageList){
+    for (var i in pageList){
         
-        if(i.indexOf(".js") > -1){ continue; }
+        //less 编译数组列表
+        if(i.indexOf(".css") > -1){ 
+            var arrCssItem = [];
+            var cssDestPath = destToPath + "css/" + i;
+            var cssDestMinPath = destToPath + "css/" + i.replace(".css", "-min.css");
+            
+            for(var j = 0; j < pageList[i].length; j++){
+                //online模式数组
+                arrCssItem[j] = basePath + pageList[i][j];
+                //dev模式数组
+                lessDevCompile[devPath + pageList[i][j].replace(".less", ".css")] = basePath + pageList[i][j];
+            }
+            
+            lessCompile[cssDestPath] = arrCssItem;
+            cssCompile[cssDestMinPath] = cssDestPath;
+        }
         
-        for(var j = 0; j < pageList[i].length; j++){
-            lessDevCompile[devPath + pageList[i][j].replace(".less", ".css")] = basePath + pageList[i][j];
+        //js 编译数组列表
+        if(i.indexOf(".js") > -1){ 
+            var arrJsItem = [];
+            var jsDestPath = destToPath + "js/" + i;
+            var jsDestMinPath = destToPath + "js/" + i.replace(".js", "-min.js");
+            
+            for(var j = 0; j < pageList[i].length; j++){
+
+                arrJsItem[j] = basePath + pageList[i][j];
+                
+            }
+            
+            jsConcat[jsDestPath] = arrJsItem;
+            jsMinify[jsDestMinPath] = jsDestPath;
         }
         
     }
     
+    //console.log(lessCompile);
+    //console.log(cssCompile);
+    //console.log(jsConcat);
+    //console.log(jsMinify);
     //console.log(lessDevCompile);
     
+    var jsImportConcat = {};
+    var jsImportMinify = {};
+    jsImportConcat[destToPath + 'cross.js'] = ['cross.list.js', 'cross.config.js', 'cross.import.js'];
+    jsImportMinify[destToPath + 'cross-min.js'] = destToPath + 'cross.js';
+
     //从cross.config.js获取配置信息
     function getConfig(){
         var configContent = grunt.file.read("cross.config.js");

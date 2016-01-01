@@ -1,48 +1,51 @@
 // 页面模块
 var crossList = {
+    'libJs.js': [
+        'vendor/jquery/jquery.min.js'
+    ],
     'commonCss.css' : [
-        'module/reset.css',
-        'module/module-a.less',
-        'module/module-b.less',
-        'widget/widget-a.less',
-        'widget/widget-b.less',
-        'module/common.less'
+        'style/module/reset.css',
+        'style/module/module-a.less',
+        'style/module/module-b.less',
+        'style/widget/widget-a.less',
+        'style/widget/widget-b.less',
+        'style/module/common.less'
     ],
     'commonJs.js' : [
-        'widget/widget-a.js',
-        'widget/widget-b.js',
-        'module/module-a.js',
-        'module/module-b.js',
+        'js/widget/widget-a.js',
+        'js/widget/widget-b.js',
+        'js/module/module-a.js',
+        'js/module/module-b.js',
         'service/service-a.js'
     ],
     //page a
     'pageaCss.css' : [
-        'widget/widget-c.less',
-        'module/module-c.less',
-        'page/page-a.less'
+        'style/widget/widget-c.less',
+        'style/module/module-c.less',
+        'style/page/page-a.less'
     ],
     'pageaJs.js' : [
-        'module/module-c.js',
-        'widget/widget-c.js',
-        'page/page-a.js'
+        'js/module/module-c.js',
+        'js/widget/widget-c.js',
+        'js/page/page-a.js'
     ],
     
     //page b
     'pagebCss.css' : [
-        'page/page-b.less'
+        'style/page/page-b.less'
     ],
     'pagebJs.js' : [
-        'module/module-c.js',
-        'page/page-b.js'
+        'js/module/module-c.js',
+        'js/page/page-b.js'
     ],
     
     //page c
     'pagecCss.css' : [
-        'page/page-c.less'
+        'style/page/page-c.less'
     ],
 
     'pagecJs.js' : [
-        'module/module-b.js',
-        'page/page-c.js'
+        'js/module/module-b.js',
+        'js/page/page-c.js'
     ]
 };

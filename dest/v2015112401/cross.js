@@ -1,49 +1,52 @@
 // 页面模块
 var crossList = {
+    'libJs.js': [
+        'vendor/jquery/jquery.min.js'
+    ],
     'commonCss.css' : [
-        'module/reset.css',
-        'module/module-a.less',
-        'module/module-b.less',
-        'widget/widget-a.less',
-        'widget/widget-b.less',
-        'module/common.less'
+        'style/module/reset.css',
+        'style/module/module-a.less',
+        'style/module/module-b.less',
+        'style/widget/widget-a.less',
+        'style/widget/widget-b.less',
+        'style/module/common.less'
     ],
     'commonJs.js' : [
-        'widget/widget-a.js',
-        'widget/widget-b.js',
-        'module/module-a.js',
-        'module/module-b.js',
+        'js/widget/widget-a.js',
+        'js/widget/widget-b.js',
+        'js/module/module-a.js',
+        'js/module/module-b.js',
         'service/service-a.js'
     ],
     //page a
     'pageaCss.css' : [
-        'widget/widget-c.less',
-        'module/module-c.less',
-        'page/page-a.less'
+        'style/widget/widget-c.less',
+        'style/module/module-c.less',
+        'style/page/page-a.less'
     ],
     'pageaJs.js' : [
-        'module/module-c.js',
-        'widget/widget-c.js',
-        'page/page-a.js'
+        'js/module/module-c.js',
+        'js/widget/widget-c.js',
+        'js/page/page-a.js'
     ],
     
     //page b
     'pagebCss.css' : [
-        'page/page-b.less'
+        'style/page/page-b.less'
     ],
     'pagebJs.js' : [
-        'module/module-c.js',
-        'page/page-b.js'
+        'js/module/module-c.js',
+        'js/page/page-b.js'
     ],
     
     //page c
     'pagecCss.css' : [
-        'page/page-c.less'
+        'style/page/page-c.less'
     ],
 
     'pagecJs.js' : [
-        'module/module-b.js',
-        'page/page-c.js'
+        'js/module/module-b.js',
+        'js/page/page-c.js'
     ]
 };
 //cdn 数组
@@ -70,7 +73,6 @@ var Config = {
     subPublishVersion: "1.0",
     resource: typeof crossList == "undefined" ? {}: crossList,
     //language: navigator.language || navigator.browserLanguage,
-    cdnJquery: false,
     cdnPath: __cdn,
     imagePath: __cdn + '/src/img',
     mode: 'online' // dev/online/onlinedev
@@ -95,9 +97,6 @@ var Application = function(config){
     //cdn path
     this.cdnPath = "";
 
-    //service path
-    this.servicePath = "../";
-
     //dest path
     this.destPath = "";
 
@@ -120,8 +119,8 @@ var Application = function(config){
      */
     this.initImport = function(){
 
-        this.cdnPath = this.config.cdnPath || "";
-        this.destPath = this.config.cdnPath + "/dest/"+ this.config.publishVersion;
+        this.cdnPath = this.config.cdnPath || "/";
+        this.destPath = this.config.cdnPath + "/dest/" + this.config.publishVersion + "/";
 
         /**
          * 根据是否是开发版修改cdn路径和判断加载less编译文件
@@ -129,23 +128,11 @@ var Application = function(config){
         if (this.config.mode == "dev") {
 
             //dev环境路径配置
-            this.cdnPath = this.cdnPath + "";
-            //service文件目录配置
-            this.servicePath = this.config.cdnPath + "/src/";
+            this.cdnPath = this.cdnPath + "/";
 
         };
 
     };
-
-    /**
-     * 判断是否从service文件夹导入
-     * 私有方法不可暴露
-     * @param  {[type]}  str [输入路径]
-     * @return {Boolean}     [description]
-     */
-    var __isServiceFile = function(str){
-        return /^service\//.test(str);
-    }
 
     /**
      * [__importdest 导入压缩文件]
@@ -169,11 +156,11 @@ var Application = function(config){
         
         if (fileType == "js") {
             
-            outStr = __jsTemplate.replace("${src}", ins.destPath + "/js/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
+            outStr = __jsTemplate.replace("${src}", ins.destPath + "js/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         } else if (fileType == "css") {
 
-            outStr = __cssTemplate.replace("${href}", ins.destPath + "/css/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
+            outStr = __cssTemplate.replace("${href}", ins.destPath + "css/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         }
 
@@ -199,16 +186,11 @@ var Application = function(config){
 
             if (fileType == "js") {
 
-                //以service开头的做特殊处理
-                if(__isServiceFile(files[i])){
-                    outStr = __jsTemplate.replace("${src}", ins.servicePath + files[i]).replace("${itemid}", files[i]);
-                }else{
-                    outStr = __jsTemplate.replace("${src}", ins.cdnPath + "/src/js/" + files[i]).replace("${itemid}", files[i]);
-                }
+                outStr = __jsTemplate.replace("${src}", ins.cdnPath + "src/" + files[i]).replace("${itemid}", files[i]);
 
             } else if (fileType == "css") {
 
-                outStr = __cssTemplate.replace("${href}", ins.cdnPath + "/dev/css/" + files[i]).replace("${itemid}", files[i]).replace(".less", ".css");
+                outStr = __cssTemplate.replace("${href}", ins.cdnPath + "dev/" + files[i]).replace("${itemid}", files[i]).replace(".less", ".css");
             
             };
 
@@ -283,18 +265,6 @@ var Application = function(config){
         } else {
             head.appendChild(script);
         }
-    }
-
-    /**
-     * 调用jquey库
-     * @return {[type]} [description]
-     */
-    this.libImportJs = function(){
-        if (this.config.cdnJquery) {
-            document.write('<script src="http://cdn.staticfile.org/jquery/1.11.1-rc2/jquery.min.js" type="text/javascript" ></script>');
-        }else{
-            document.write('<script src="'+ this.config.cdnPath +'/src/vendor/jquery/jquery.min.js?v='+ this.config.subPublishVersion +'" type="text/javascript" ></script>');
-        };
     }
 
     /**

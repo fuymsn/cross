@@ -15,24 +15,16 @@ module.exports = function(grunt) {
 
         //base path
         basePath = "src/",
+        baseStylePath = basePath + "style/",
         baseJsPath = basePath + "js/",
-        baseCssPath = basePath + "style/",
-        
-        //serivce path => src/service/user.js @example /回到src的父级
-        serviceJsPath = basePath,
-        
+
         //dest path
         destPath = 'dest/',
         destToPath = destPath + publishVersion + '/',
         
         //dev path
         devPath = 'dev/',
-        devCssPath = devPath + "css/";
-
-    //判断是否从service文件夹导入
-    var isServiceFile = function(str){
-        return /^service\//.test(str);
-    }
+        devCssPath = devPath + "style/";
     
     //less 编译数组列表
     var lessCompile = {};
@@ -47,7 +39,7 @@ module.exports = function(grunt) {
         var cssDestMinPath = destToPath + "css/" + i.replace(".css", "-min.css");
         
         for(var j = 0; j < pageList[i].length; j++){
-            arrCssItem[j] = baseCssPath + pageList[i][j];
+            arrCssItem[j] = basePath + pageList[i][j];
         }
         
         lessCompile[cssDestPath] = arrCssItem;
@@ -76,12 +68,8 @@ module.exports = function(grunt) {
         var jsDestMinPath = destToPath + "js/" + i.replace(".js", "-min.js");
         
         for(var j = 0; j < pageList[i].length; j++){
-            
-            if(isServiceFile(pageList[i][j])){
-                arrJsItem[j] = serviceJsPath + pageList[i][j];
-            }else{
-                arrJsItem[j] = baseJsPath + pageList[i][j];
-            }
+
+            arrJsItem[j] = basePath + pageList[i][j];
             
         }
         
@@ -100,7 +88,7 @@ module.exports = function(grunt) {
         if(i.indexOf(".js") > -1){ continue; }
         
         for(var j = 0; j < pageList[i].length; j++){
-            lessDevCompile[devCssPath + pageList[i][j].replace(".less", ".css")] = baseCssPath + pageList[i][j];
+            lessDevCompile[devPath + pageList[i][j].replace(".less", ".css")] = basePath + pageList[i][j];
         }
         
     }
@@ -209,7 +197,7 @@ module.exports = function(grunt) {
             
             //less文件修改监听
             less: {
-                files: [ basePath + '**/*.less', basePath + '**/*.css'],
+                files: [ baseStylePath + '**/*.less', baseStylePath + '**/*.css'],
                 tasks: ['less:dev']
             },
             

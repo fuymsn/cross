@@ -18,9 +18,6 @@ var Application = function(config){
     //cdn path
     this.cdnPath = "";
 
-    //service path
-    this.servicePath = "../";
-
     //dest path
     this.destPath = "";
 
@@ -43,8 +40,8 @@ var Application = function(config){
      */
     this.initImport = function(){
 
-        this.cdnPath = this.config.cdnPath || "";
-        this.destPath = this.config.cdnPath + "/dest/"+ this.config.publishVersion;
+        this.cdnPath = this.config.cdnPath || "/";
+        this.destPath = this.config.cdnPath + "/dest/" + this.config.publishVersion + "/";
 
         /**
          * 根据是否是开发版修改cdn路径和判断加载less编译文件
@@ -52,23 +49,11 @@ var Application = function(config){
         if (this.config.mode == "dev") {
 
             //dev环境路径配置
-            this.cdnPath = this.cdnPath + "";
-            //service文件目录配置
-            this.servicePath = this.config.cdnPath + "/src/";
+            this.cdnPath = this.cdnPath + "/";
 
         };
 
     };
-
-    /**
-     * 判断是否从service文件夹导入
-     * 私有方法不可暴露
-     * @param  {[type]}  str [输入路径]
-     * @return {Boolean}     [description]
-     */
-    var __isServiceFile = function(str){
-        return /^service\//.test(str);
-    }
 
     /**
      * [__importdest 导入压缩文件]
@@ -92,11 +77,11 @@ var Application = function(config){
         
         if (fileType == "js") {
             
-            outStr = __jsTemplate.replace("${src}", ins.destPath + "/js/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
+            outStr = __jsTemplate.replace("${src}", ins.destPath + "js/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         } else if (fileType == "css") {
 
-            outStr = __cssTemplate.replace("${href}", ins.destPath + "/css/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
+            outStr = __cssTemplate.replace("${href}", ins.destPath + "css/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file);
         
         }
 
@@ -122,16 +107,11 @@ var Application = function(config){
 
             if (fileType == "js") {
 
-                //以service开头的做特殊处理
-                if(__isServiceFile(files[i])){
-                    outStr = __jsTemplate.replace("${src}", ins.servicePath + files[i]).replace("${itemid}", files[i]);
-                }else{
-                    outStr = __jsTemplate.replace("${src}", ins.cdnPath + "/src/js/" + files[i]).replace("${itemid}", files[i]);
-                }
+                outStr = __jsTemplate.replace("${src}", ins.cdnPath + "src/" + files[i]).replace("${itemid}", files[i]);
 
             } else if (fileType == "css") {
 
-                outStr = __cssTemplate.replace("${href}", ins.cdnPath + "/dev/css/" + files[i]).replace("${itemid}", files[i]).replace(".less", ".css");
+                outStr = __cssTemplate.replace("${href}", ins.cdnPath + "dev/" + files[i]).replace("${itemid}", files[i]).replace(".less", ".css");
             
             };
 

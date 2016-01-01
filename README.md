@@ -39,6 +39,8 @@ A Front-End Env can be used to common website & mobile
 * todo: framework can be simple used the same node_modules from grunt and webpack.
 * todo: multi-app run
 * todo: MVVM
+* todo: javascript 单元测试
+* todo: import.js 中的导入配置优化`__jsTemplate.replace("${src}", ins.destPath + "js/" + fileDest + "?v=" + ins.config.subPublishVersion).replace("${itemid}", file)`
 
 # 环境配置
 * 安装node.js, [安装入口](https://nodejs.org/en/)

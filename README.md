@@ -9,7 +9,7 @@ CROSS包含以下特性
 * 快速CDN切换和配置
 
 ### CSS
-* css根据配置列表拼接，页面css加载量可控
+* css根据配置列表按需加载，页面css加载量可控
 * less代码实时编译监听
 * css图片资源url可配置
 * css autoprefix浏览器差异自动补全（可根据需求在Gruntjs中进行配置）
@@ -34,11 +34,9 @@ CROSS包含以下特性
 * todo: 方便集成webpack
 
 ### others
-A Front-End Framework can be used to common website & mobile
-* A simple application to import javascript &amp; css into page as the sync &amp; async way
+A Front-End Env can be used to common website & mobile
 * todo: can be applied to Grunt & webpack.
 * todo: framework can be simple used the same node_modules from grunt and webpack.
-* todo: 开启css, js, html语法检查
 * todo: multi-app run
 * todo: MVVM
 
@@ -91,12 +89,17 @@ module.exports = {
 ##### 6.运行html页面
 
 ### 其他操作
-##### 开发模式下，开启less代码编译监听
+##### 开发模式下，开启开发模式监听
 ```shell
 $ grunt watch
 ```
+开发模式监听包括
+* 配置文件监听，当配置文件被修改以后，配置文件会重载，并重新执行grunt dev任务
+* less编译监听，grunt watch会实时检测less文件是否有修改，如果有修改，less会被重新编译成css文件
+* css语法检查（可自行开启和关闭）
+* JavaScript语法检查（可自行开启和关闭）
 ##### 开发模式(dev)/线上模式(online)/线上调试模式切换(onlinedev)
-在/dist/v2014******/ued.import.js文件中修改如下配置，即可马上实现切换
+在/dist/v2016******/ued.import.js文件中修改如下配置，即可马上实现切换
 ```js
 var Config = {
     mode: 'online' // dev/online/onlinedev
@@ -113,6 +116,17 @@ CROSS中的package.json为标准的npm配置，开发者也可通过npm自行配
 $ npm init
 ```
 然后根据提示输入相应信息。
+##### css图片路径修改
+将grunt中initConfig中的modifyVars的imagePath对象修改为自己需要的路径，示例如下：
+```js
+grunt.initConfig({
+    less: {
+        modifyVars: {
+            imagePath:'"http://www.your-path.com"'
+        }
+    }
+}
+```
 
 ### CROSS配置
 ##### cross.config.js
@@ -123,8 +137,6 @@ cross的配置在cross.config.js文件中配置
 <br/>发布子版本号，可自定义
 * **resource**
 <br/>由corss自动生成
-* **cdnJquery**
-<br/>jq库是否单独使用CDN
 * **cdnPath**
 <br/>用于配置cdn列表，如果配置两个以上的cdn，每次刷新页面cdn会随机选择和跳转
 * **imagePath**
@@ -142,12 +154,29 @@ cross的配置在cross.config.js文件中配置
     ]
 }
 ```
-然后在页面中引用pageaJs.js即可
+然后在页面中引用pageaJs.js即可，css文件引用同理
 ```html
 <script type="text/javascript">
     cross.importFile("pageaJs", "js");
 </script>
 ```
+
+### 目录结构说明
+##### dest
+dest目录为grunt执行`grunt dest`任务后的目标目录，即生产环境代码。
+##### dev
+dev目录为grunt执行`grunt dev`任务后的目标目录，即开发调试代码，less编译后的文件都在这里生成。
+##### mobile
+mobile目录是移动端需要的开发资源。
+##### node_modules
+node_modules目录是npm包管理目录。
+##### src
+src目录为开发资源文件目录，所有的开发资源文件都集中到此目录统一管理。所有开发者在开发时只需关注此目录即可。
+##### 其他
+* cross.config.js, cross.import.js和cross.list.js分别为cross配置文件，cross页面加载导入程序和页面加载依赖列表。
+* index.html 测试页面
+* Gruntfile.js, package.json 为grunt相关配置文件
+
 
 # Release History
 * 2015-12-17 v0.1.0 初始版本发布，优化less发布流程 optimize the process of less compilation

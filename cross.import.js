@@ -209,18 +209,6 @@ var Application = function(config){
     }
 
     /**
-     * 调用jquey库
-     * @return {[type]} [description]
-     */
-    this.libImportJs = function(){
-        if (this.config.cdnJquery) {
-            document.write('<script src="http://cdn.staticfile.org/jquery/1.11.1-rc2/jquery.min.js" type="text/javascript" ></script>');
-        }else{
-            document.write('<script src="'+ this.config.cdnPath +'/src/vendor/jquery/jquery.min.js?v='+ this.config.subPublishVersion +'" type="text/javascript" ></script>');
-        };
-    }
-
-    /**
      * 构造函数
      * @return {[type]} [description]
      */

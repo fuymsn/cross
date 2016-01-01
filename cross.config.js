@@ -22,7 +22,6 @@ var Config = {
     subPublishVersion: "1.0",
     resource: typeof crossList == "undefined" ? {}: crossList,
     //language: navigator.language || navigator.browserLanguage,
-    cdnJquery: false,
     cdnPath: __cdn,
     imagePath: __cdn + '/src/img',
     mode: 'online' // dev/online/onlinedev

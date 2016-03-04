@@ -166,8 +166,24 @@ cross的配置在cross.config.js文件中配置
 ### 目录结构说明
 ##### dest
 dest目录为grunt执行`grunt dest`任务后的目标目录，即生产环境代码。
+```
+./dest
+├── v2016060101 //年月日+发布号
+├──── css
+├──── img
+├──── js
+├──── cross.js
+├──── cross-min.js
+```
 ##### dev
 dev目录为grunt执行`grunt dev`任务后的目标目录，即开发调试代码，less编译后的文件都在这里生成。
+```
+./dev
+├── style
+├──── module
+├──── page
+├──── widget
+```
 ##### mobile
 mobile目录是移动端需要的开发资源。
 ##### node_modules

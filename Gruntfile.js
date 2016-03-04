@@ -128,7 +128,7 @@ module.exports = function(grunt) {
 
         //将css背景图片资源复制到dest中
         copy: {
-            img: {
+            destImg: {
                 expand: true,
                 cwd: basePath + 'img',
                 src: '**',
@@ -369,10 +369,10 @@ module.exports = function(grunt) {
     grunt.registerTask('dest-js', ['clean:js', 'concat', 'uglify']);
     
     //压缩图片
-    grunt.registerTask('dest-img', ['clean:img', 'copy:img', 'imagemin']);
+    grunt.registerTask('dest-img', ['clean:img', 'copy:destImg', 'imagemin']);
     
     //build 任务配置
-    grunt.registerTask('build', ['less:dest', 'csscomb', 'cssmin', 'concat', 'uglify', 'copy:img', 'imagemin']);
+    grunt.registerTask('build', ['less:dest', 'csscomb', 'cssmin', 'concat', 'uglify', 'copy:destImg', 'imagemin']);
 
     //online
     grunt.registerTask('dest', 'CROSS dest task', function(){

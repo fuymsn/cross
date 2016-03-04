@@ -1,4 +1,4 @@
-/*! cross 2016-01-01 */
+/*! cross 2016-03-04 */
 /*
  * common less file, this file is module for button
  * Author: Young
@@ -13,5 +13,5 @@
 }
 /*选项卡*/
 .module .module-common {
-  background-image: url("../../../src/img/common.png");
+  background-image: url('../../../src/img/common.png');
 }

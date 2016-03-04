@@ -106,6 +106,9 @@ module.exports = function(grunt) {
         //清除dest目录所有文件
         pkg: pkg,
         clean: {
+            options:{
+                force: true
+            },
             dest: {
                 src: [destPath]
             },

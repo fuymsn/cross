@@ -9,8 +9,15 @@ var Application = function(config){
     var __jsTemplate = '<script src="${src}" charset="utf-8" type="text/javascript" itemid="${itemid}"><\/script>',
     __cssTemplate = '<link rel="stylesheet" type="text/css" href="${href}" itemid="${itemid}" />';
 
+    /*
+     *$aliases the registered type aliases
+     *@var array
+     * private
+     */
+    var aliases = [];
+
     //容器
-    //this.container = this;
+    this.container = {};
 
     //配置
     this.config = {}
@@ -21,6 +28,28 @@ var Application = function(config){
     //dest path
     this.destPath = "";
 
+    //容器
+    this.container = {};
+
+    /**
+     * Alias a type to a different name.
+     * @param  string  abstract
+     * @param  string  alias
+     * @return void
+     */
+    this.alias = function(abstract, alias){
+        aliases[alias] = abstract;
+    };
+
+    /**
+     * Get the alias for an abstract if available.
+     * @param  string  $abstract
+     * @return string
+     */
+    this.getAlias = function(abstract){
+        return aliases[abstract] ? aliases[abstract] : abstract;
+    }
+
     /**
      * 装载配置文件
      * @param  {[type]} str [description]
@@ -30,10 +59,32 @@ var Application = function(config){
         this.config = conf;
     }
 
-    this.make = function(){
 
+
+
+    //将实例注册到容器上  user  user config 学习singleton ， provider, provider用于提供工具类之类的东西
+    this.register = function(objName){
+        this.container[objName] = new window[objName]();
     }
 
+    /**
+     * 获取容器上的对象
+     * @param obj 对象名
+     * @return 返回容器中的对象
+     */
+    this.make = function(objName){
+        //判断容器中是否存在，如果存在就返回对象
+        for(var key in this.container){
+            if(key == objName){
+                return this.container[objName];
+            }
+        };
+
+        //如果不存在就直接返回注册对象
+        this.register(objName);
+        return this.container[objName];
+    }
+ 
     /**
      * 初始化导入
      * @return {[type]} [description]

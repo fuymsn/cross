@@ -19,4 +19,5 @@ $(function(){
     
     document.getElementById("page-a").innerText = "page 'A' is running";
     
+    
 });

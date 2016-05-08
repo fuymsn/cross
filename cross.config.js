@@ -23,6 +23,7 @@ var Config = {
     resource: typeof crossList == "undefined" ? {}: crossList,
     //language: navigator.language || navigator.browserLanguage,
     cdnPath: __cdn,
+    //cdnPath: "../../dest/",
     imagePath: __cdn + '/src/img',
     mode: 'online' // dev/online/onlinedev
 };

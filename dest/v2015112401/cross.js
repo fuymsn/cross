@@ -74,6 +74,7 @@ var Config = {
     resource: typeof crossList == "undefined" ? {}: crossList,
     //language: navigator.language || navigator.browserLanguage,
     cdnPath: __cdn,
+    //cdnPath: "../../dest/",
     imagePath: __cdn + '/src/img',
     mode: 'online' // dev/online/onlinedev
 };
@@ -81,17 +82,35 @@ var Config = {
  * 静态文件加载器 - v0.1.2 - 2015-11-25
  * Copyright (c) 2015 Young Foo
  */
+var Cross = function(){
+    
+}
 
 var Application = function(config){
-
+    
+    //声明实例对象
+    //Application 实例化完成后将会挂载到Cross.instance 上面
+    Cross.instance = {};
+    
     //私有变量less，css，js模板
     var __jsTemplate = '<script src="${src}" charset="utf-8" type="text/javascript" itemid="${itemid}"><\/script>',
     __cssTemplate = '<link rel="stylesheet" type="text/css" href="${href}" itemid="${itemid}" />';
 
-    //容器
-    //this.container = this;
+    /**
+     * aliases the registered type aliases
+     * 注册假名列表
+     * var array
+     * private
+     */
+    var aliases = [];
 
-    //配置
+    //container
+    this.container = {};
+    
+    //instance
+    this.instances = {};
+
+    //config
     this.config = {}
 
     //cdn path
@@ -99,6 +118,29 @@ var Application = function(config){
 
     //dest path
     this.destPath = "";
+    
+    /**
+     * 设置假名
+     * Alias a type to a different name.
+     * @param  string  abstract 类名
+     * @param  string  alias 假名
+     * @return void
+     */
+    this.alias = function(alias, abstract){
+        aliases[alias] = abstract;
+    };
+
+    /**
+     * 获取假名
+     * Get the alias for an abstract if available.
+     * @param  string  $abstract
+     * @return string
+     */
+    this.getAlias = function(abstract){
+        return aliases[abstract] ? aliases[abstract] : abstract;
+    }
+
+
 
     /**
      * 装载配置文件
@@ -108,11 +150,81 @@ var Application = function(config){
     this.configure = function(conf){
         this.config = conf;
     }
-
-    this.make = function(){
-
+    
+    
+    /**
+     * 注册实例到容器中
+     */
+    this.instance = function(abstract, instance){
+        
+        this.instances[abstract] = instance;
+        
     }
 
+    /**
+     * 获取容器实例
+     * Set the globally available instance of the container.
+     * @param null
+     * @return obj
+     */
+    this.getInstance = function(){
+        return Cross.instance;
+    }
+    
+    /**
+     * 设置容器实例
+     * Set the shared instance of the container.
+     */
+    this.setInstance = function(container){
+        Cross.instance = container;
+    }
+    
+    /**
+     * 创建单例模式
+     * 参数：args 传给单例的一个参数集合
+     */    
+    this.singleTon = function(args){
+        
+        var args = args || {};
+        
+        this.name = "SingleTonTester";
+        
+        this.pointX = args.pointX || 6;
+        
+        this.pointY = args.pointY || 10;
+        
+    }
+    
+    
+    //将实例挂载到instances上
+    this.register = function(objName){
+        //判断存在性
+        if (!window[objName]) { return; };
+
+        this.instances[objName] = new window[objName]();
+    }
+
+    /**
+     * 获取容器上的对象
+     * @param obj 对象名
+     * @return 返回容器中的对象
+     */
+    this.make = function(objName){
+
+        //通过假名获取真名
+        var abstract = this.getAlias(objName);
+
+        //单例
+        //判断容器中是否存在，如果存在就返回对象
+        if(this.instances[abstract]){
+            return this.instances[abstract];
+        };
+
+        //如果不存在就直接返回注册对象
+        this.register(abstract);
+        return this.instances[abstract];
+    }
+ 
     /**
      * 初始化导入
      * @return {[type]} [description]

@@ -163,6 +163,12 @@ cross的配置在cross.config.js文件中配置
 </script>
 ```
 
+### CROSS扩展和开发
+##### 单例调用
+```js
+Cross.instance
+```
+
 ### 目录结构说明
 ##### dest
 dest目录为grunt执行`grunt dest`任务后的目标目录，即生产环境代码。

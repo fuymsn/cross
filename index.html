@@ -59,5 +59,30 @@
     cross.importFile("pageaJs", "js");
 </script>
 
+<script type="text/javascript">
+//singleton test
+var People = function(){
+
+    //private
+    var age = 18;
+
+    //public
+    this.skin = "white";
+    this.lan = "CHN"
+
+    //public
+    this.setSkin = function(skinColor){
+        this.skin = skinColor;
+    }
+
+    this.setLanguage = function(lan){
+        this.lan = lan;
+    }
+
+}
+
+
+</script>
+
 </body>
 </html>

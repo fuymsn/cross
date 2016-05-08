@@ -96,10 +96,8 @@ var Application = function(config){
      * Set the shared instance of the container.
      */
     this.setInstance = function(container){
-        Cross.instance = container
+        Cross.instance = container;
     }
-    
-    
     
     /**
      * 创建单例模式
@@ -118,9 +116,12 @@ var Application = function(config){
     }
     
     
-    //将实例注册到容器上  user  user config 学习singleton ， provider, provider用于提供工具类之类的东西
+    //将实例挂载到instances上
     this.register = function(objName){
-        this.container[objName] = new window[objName]();
+        //判断存在性
+        if (!window[objName]) { return; };
+
+        this.instances[objName] = new window[objName]();
     }
 
     /**
@@ -129,16 +130,19 @@ var Application = function(config){
      * @return 返回容器中的对象
      */
     this.make = function(objName){
+
+        //通过假名获取真名
+        var abstract = this.getAlias(objName);
+
+        //单例
         //判断容器中是否存在，如果存在就返回对象
-        for(var key in this.container){
-            if(key == objName){
-                return this.container[objName];
-            }
+        if(this.instances[abstract]){
+            return this.instances[abstract];
         };
 
         //如果不存在就直接返回注册对象
-        this.register(objName);
-        return this.container[objName];
+        this.register(abstract);
+        return this.instances[abstract];
     }
  
     /**

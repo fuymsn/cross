@@ -9,6 +9,7 @@ $(function(){
     if(Validation){
         document.getElementById("module-c").innerText = "module 'C' 导入完成";
     }
+    
     widgetA();
     widgetB();
     widgetC();

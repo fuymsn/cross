@@ -179,29 +179,22 @@ var Application = function(config){
         Cross.instance = container;
     }
     
-    /**
-     * 创建单例模式
-     * 参数：args 传给单例的一个参数集合
-     */    
-    this.singleTon = function(args){
-        
-        var args = args || {};
-        
-        this.name = "SingleTonTester";
-        
-        this.pointX = args.pointX || 6;
-        
-        this.pointY = args.pointY || 10;
-        
-    }
     
-    
-    //将实例挂载到instances上
+    //将实例注册到instances上
     this.register = function(objName){
         //判断存在性
         if (!window[objName]) { return; };
 
+        //注册实例
         this.instances[objName] = new window[objName]();
+
+        //设置假名
+        var alias = objName.replace(/^\w?/g, function(e){
+            return e.toLowerCase();
+        });
+
+        this.alias(alias, objName);
+        aliases;
     }
 
     /**

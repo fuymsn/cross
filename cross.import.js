@@ -103,11 +103,11 @@ var Application = function(config){
     //将实例注册到instances上
     this.register = function(objName){
         //判断存在性
-        if (!window[objName]) { return; };
+        if (!window[objName]) { return; }
 
         //注册实例
         this.instances[objName] = new window[objName]();
-
+	Application.instances[objName] = this.instances[objName];
         //设置假名
         var alias = objName.replace(/^\w?/g, function(e){
             return e.toLowerCase();
@@ -129,8 +129,8 @@ var Application = function(config){
 
         //单例
         //判断容器中是否存在，如果存在就返回对象
-        if(this.instances[abstract]){
-            return this.instances[abstract];
+        if(Application.instances[abstract]){
+            return Application.instances[abstract];
         };
 
         //如果不存在就直接返回注册对象
@@ -304,6 +304,9 @@ var Application = function(config){
         //导入配置文件
         this.initImport();
 
+	//Application挂载实例对象
+	Application.instances = {};
+	
     }
 
     //初始化
